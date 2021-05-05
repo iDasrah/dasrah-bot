@@ -14,7 +14,14 @@ client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
 client.on('ready', () => {
-	console.log("Dasrah: ON !");
+	console.log(`${config.bot_info.name}: I'm ready !`);
+
+	// status
+	client.user.setPresence({
+		activity: {
+			name: `${config.prefix}help pour de l'aide`
+		}
+	})
 });
 
 for(const file of commandFiles) {
@@ -40,5 +47,6 @@ client.on('message', message => {
 		message.reply(messages['command-execution-error']);
 	}
 });
+
 
 client.login(process.env.token);
