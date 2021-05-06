@@ -15,7 +15,6 @@ const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('
 
 client.on('ready', () => {
 	console.log(`${config.bot_info.name}: I'm ready !`);
-	console.log(commandFiles);
 
 	// status
 	client.user.setPresence({
