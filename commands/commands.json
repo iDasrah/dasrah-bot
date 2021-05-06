@@ -21,6 +21,11 @@
     {
       "name": "shrek",
       "description": "envoie un meme random shrek."
+    },
+    {
+      "name": "wallpaper",
+      "args": "device",
+      "description": "envoie un fond d'écran random qui pourrait vous plaire."
     }
   ]
 }
