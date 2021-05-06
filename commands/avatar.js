@@ -1,6 +1,5 @@
 const Discord = require('discord.js');
 const descs = require('./avatar.json');
-const { random } = require('../module');
 
 module.exports = {
   name: 'avatar',
@@ -24,3 +23,9 @@ module.exports = {
     }
   }
 };
+
+function random(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;
+}

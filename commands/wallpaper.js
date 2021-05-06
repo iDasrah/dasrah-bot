@@ -1,6 +1,5 @@
 const { mobileWallpapers, pcWallpapers } = require('./wallpapers.json');
 const { MessageEmbed } = require('discord.js');
-const { random } = require('../module');
 const { messages } = require('../config.json');
 
 module.exports = {
@@ -24,4 +23,10 @@ module.exports = {
       message.channel.send(embed);
     }
   }
+}
+
+function random(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;
 }
