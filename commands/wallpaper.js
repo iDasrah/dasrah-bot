@@ -1,13 +1,16 @@
 const { mobileWallpapers, pcWallpapers } = require('./wallpapers.json');
 const { MessageEmbed } = require('discord.js');
 const { random } = require('../module');
+const { messages } = require('../config.json');
 
 module.exports = {
   name: "wallpaper",
   description: "random wallpaper",
   execute(message, args) {
-    const embed = new MessageEmbed()
-    .setColor();
+
+    if(!args.length) return message.reply(messages['no-argument-error']);
+
+    const embed = new MessageEmbed();
 
     if(args[0] === 'mobile') {
       embed.setTitle("MOBILE WALLPAPER GENERATOR")
