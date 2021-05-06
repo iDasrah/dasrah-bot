@@ -24,6 +24,9 @@ function getCommandName(index) {
     return `${prefix}${command.name}`;
   }
 
+  args = command.args.split(',');
+  console.log(args);
+
   return `${prefix}${command.name} <${command.args}>`;
 }
 
