@@ -24,6 +24,21 @@ for(const file of commandFiles) {
 	client.commands.set(command.name, command);
 }
 
+// on member join
+client.on('guildMemberAdd', (member) => {
+	const channel = member.guild.channels.cache.find(ch => ch.name === 'portail');
+	if(!channel) return;
+	channel.send(`Salut mec ! ${member}`);
+});
+
+// on member quit
+client.on('guildMemberRemove', (member) => {
+	const channel = member.guild.channels.cache.find(ch => ch.name === 'portail');
+	if(!channel) return;
+	channel.send(`C'est ça, casse toi, ${member}.`)
+})
+
+
 // command handler
 client.on('message', message => {
 	if(!message.content.startsWith(prefix) || message.author.bot) return;
@@ -44,4 +59,4 @@ client.on('message', message => {
 });
 
 
-client.login(process.env.token);
+client.login("ODI1NzU0OTEwMDExODE3OTg0.YGCiMA.WV84IEyZnOSDtZn4Mqqk_h6Fk1g");
