@@ -51,7 +51,7 @@ function sendWallpaper(message, device) {
   .setColor("#F7B2EE")
   .setDescription(descriptions[random(0, descriptions.length)])
   .setTimestamp();
-  image = device[random(1, device.length)].url;
+  image = device[random(0, device.length)].url;
 
   device = (device === desktop) ? 'desktop' : 'mobile';
 
