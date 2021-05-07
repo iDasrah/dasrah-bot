@@ -7,8 +7,9 @@ module.exports = {
   args: false,
   execute(message, args) {
     const embed = new Discord.MessageEmbed()
-    .setColor('#C4E538')
+    .setColor('#41B64C')
     .setTitle('SHREK MEME GENERATOR')
+    .setTimestamp()
     .setImage(memes[random(0, memes.length)].url);
     message.channel.send(embed);
   }
