@@ -24,7 +24,7 @@
     },
     {
       "name": "wallpaper",
-      "args": "device",
+      "args": "device type",
       "description": "envoie un fond d'écran random qui pourrait vous plaire."
     }
   ]
