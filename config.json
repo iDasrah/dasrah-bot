@@ -10,10 +10,12 @@
     "not-enough-clear-error": "vous devez supprimer au moins un message.",
     "not-in-a-voice-channel-error": "vous devez être dans un salon vocal !",
     "no-permission-error": "tu n'as pas le droit de faire cela. Demande à un administrateur.",
-    "video-not-found": "aucun résultats n'ont été trouvés pour cette recherche."
+    "video-not-found": "aucun résultats n'ont été trouvés pour cette recherche.",
+    "wrong-argument-error": "je ne comprend pas cet argument.",
+    "no-urls-wallpaper": "oups ! Aucun fond d'écran pour cette plateforme n'a été trouvé. Tu peux demander à un administrateur d'en ajouter."
   },
   "bot_info": {
-    "name": "Assistante luxueuse",
+    "name": "Sashaa",
     "version": 1
   }
 }
