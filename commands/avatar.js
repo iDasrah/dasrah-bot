@@ -7,7 +7,7 @@ module.exports = {
   execute(message, args) {
 
     const embed = new Discord.MessageEmbed()
-    .setColor('#ffffff')
+    .setColor('#69D8C9')
     .setDescription(descs.messages[random(0, descs.messages.length)])
     .setTimestamp();
 
