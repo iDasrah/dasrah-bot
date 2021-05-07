@@ -7,7 +7,9 @@ module.exports = {
   description: "recevez de l'aide sur les commandes du bot.",
   execute(message, args) {
     const embed = new Discord.MessageEmbed()
-    .setTitle("COMMANDES")
+    .setColor("#E740E3")
+    .setTimestamp()
+    .setTitle("COMMANDES");
 
     for (let i = 0; i < commands.length; i++) {
       embed.addField(getCommandName(i), getCommandDesc(i));
@@ -24,7 +26,7 @@ function getCommandName(index) {
     return `${prefix}${command.name}`;
   }
 
-  args = command.args.split(',');
+  args = command.args.split(' ');
   console.log(args);
 
   return `${prefix}${command.name} <${command.args}>`;
