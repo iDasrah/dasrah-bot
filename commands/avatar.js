@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const descs = require('./avatar.json');
+const {messages} = require('./avatar.json');
 
 module.exports = {
   name: 'avatar',
@@ -8,7 +8,7 @@ module.exports = {
 
     const embed = new Discord.MessageEmbed()
     .setColor('#69D8C9')
-    .setDescription(descs.messages[random(0, descs.messages.length)])
+    .setDescription(messages[random(0, messages.length)])
     .setTimestamp();
 
     if(!args.length) {
