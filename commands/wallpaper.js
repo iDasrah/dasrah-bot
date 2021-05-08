@@ -7,14 +7,16 @@ module.exports = {
   description: "random wallpaper",
   execute(message, args) {
 
-    if(!args.length) return message.reply(messages['no-argument-error']);
+    if(!args.length) {
+      sendWallpaper(message);
+    }
 
     if(args.length === 1) {
 
       if(args[0] === 'mobile') {
-        sendWallpaper(message, mobile);
+        sendWallpaperByDevice(message, mobile);
       } else if(args[0] === 'desktop') {
-        sendWallpaper(message, desktop);
+        sendWallpaperByDevice(message, desktop);
       } else return message.reply(messages['wrong-argument-error']);
     }
 
@@ -45,7 +47,16 @@ function getFromType(device, type) {
   return urls; 
 }
 
-function sendWallpaper(message, device) {
+function sendWallpaper(message) {
+  choice = random(0, 2);
+
+  device = (choice === 0) ? mobile : desktop;
+
+  sendWallpaperByDevice(message, device);
+
+}
+
+function sendWallpaperByDevice(message, device) {
 
   const embed = new MessageEmbed()
   .setColor("#F7B2EE")
