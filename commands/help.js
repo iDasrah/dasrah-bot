@@ -9,7 +9,8 @@ module.exports = {
     const embed = new Discord.MessageEmbed()
     .setColor("#E740E3")
     .setTimestamp()
-    .setTitle("COMMANDES");
+    .setTitle("COMMANDES")
+    .setDescription("[] -> argument optionnel\n<> -> argument obligatoire");
 
     for (let i = 0; i < commands.length; i++) {
       embed.addField(getCommandName(i), getCommandDesc(i));
@@ -26,10 +27,17 @@ function getCommandName(index) {
     return `${prefix}${command.name}`;
   }
 
-  args = command.args.split(' ');
-  console.log(args);
+  args = "";
+  command.args.forEach(arg => {
+    if(arg.includes("?")) {
+      arg = arg.substring(1);
+      args += ` [${arg}]`;
+    } else {
+      args += ` <${arg}>`;
+    }
+  });
 
-  return `${prefix}${command.name} <${command.args}>`;
+  return `${prefix}${command.name} ${args}`;
 }
 
 function getCommandDesc(index) {
