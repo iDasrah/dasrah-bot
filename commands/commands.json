@@ -6,12 +6,12 @@
     },
     {
       "name": "avatar",
-      "args": "user",
+      "args": ["user"],
       "description": "répond avec l'avatar de l'utilisateur."
     },
     {
       "name": "clear",
-      "args": "number",
+      "args": ["number"],
       "description": "supprime plusieurs messages d'un coup."
     },
     {
@@ -24,7 +24,7 @@
     },
     {
       "name": "wallpaper",
-      "args": "device type",
+      "args": ["?device", "?type"],
       "description": "envoie un fond d'écran random qui pourrait vous plaire."
     }
   ]
