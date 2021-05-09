@@ -1,6 +1,8 @@
 const { mobile, desktop, descriptions } = require('./wallpapers.json');
 const { MessageEmbed } = require('discord.js');
 const { messages } = require('../config.json');
+const editJson = require('edit-json-file');
+const editJsonFile = require('edit-json-file');
 
 module.exports = {
   name: "wallpaper",
@@ -11,18 +13,25 @@ module.exports = {
       sendWallpaper(message);
     }
 
-    if(args.length === 1) {
-
-      if(args[0] === 'mobile') {
-        sendWallpaperByDevice(message, mobile);
-      } else if(args[0] === 'desktop') {
-        sendWallpaperByDevice(message, desktop);
-      } else return message.reply(messages['wrong-argument-error']);
+    else if(args[0] === 'mobile' && !args[1]) {
+      sendWallpaperByDevice(message, mobile);
+    } else if(args[0] === 'desktop' && !args[1]) {
+      sendWallpaperByDevice(message, desktop);
+    } else if (args[0] === 'add') {
+      if(!args[1]) return message.reply(messages['not-enough-arguments-error']);
+      if(!(args[1] === 'mobile' || args[1] === 'desktop')) return message.reply(`${messages['wrong-argument-error']} (${args[1]})`);
+      else if(!args[2]) return message.reply(messages['not-enough-arguments-error']);
+      else if(!args[3]) return message.reply(messages['not-enough-arguments-error']);
+      else if(!validURL(args[3])) return message.reply(messages['no-valid-url']);
+      else if(!message.member.roles.cache.find(role => role.name === 'Contributeur')) return message.reply(`${messages['no-permission-error']} Ou à un @Contributeur !`);
+      addToList(args[1], args[2], args[3]);
     }
 
-    if(args[1]) {
+    else if(args[1] && !args[0] === 'add') {
       sendWallpaperByType(message, args[0], getFromType(args[0], args[1]));
     }
+
+    
   }
 }
 
@@ -44,7 +53,7 @@ function getFromType(device, type) {
     }
   });
 
-  return urls; 
+  return urls;
 }
 
 function sendWallpaper(message) {
@@ -86,4 +95,22 @@ function sendWallpaperByType(message, device, urls) {
   embed.setTitle(`${device.toUpperCase()} WALLPAPER GENERATOR`)
   .setImage(image);
   message.channel.send(embed);
+}
+
+function addToList(device, type, url) {
+
+  const file = editJsonFile(`${__dirname}/wallpapers.json`);
+
+  file.append(device, {type: type, url: url});
+  file.save();
+}
+
+function validURL(url) {
+  var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+    '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+  return !!pattern.test(url);
 }
