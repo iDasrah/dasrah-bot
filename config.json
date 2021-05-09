@@ -1,8 +1,9 @@
 {
   "prefix": "?",
   "messages": {
-    "no-argument-error": "vous n'avez pas saisi d'arguments !",
-    "too-much-arguments-error": "vous avez saisi trop d'arguments !",
+    "no-argument-error": "vous n'avez pas saisi d'arguments ! Fais la commande d'aide.",
+    "not-enough-arguments-error": "j'ai besoin de plus d'arguments pour effectuer cette commande ! Fais la commande d'aide.",
+    "too-much-arguments-error": "vous avez saisi trop d'arguments ! Fais la commande d'aide.",
     "command-execution-error": "un problème est survenu lors de l'éxécution de la commande.",
     "invalid-command-error": "commande invalide.",
     "NaN-arg-error": "veuillez utiliser un nombre.",
@@ -12,7 +13,8 @@
     "no-permission-error": "tu n'as pas le droit de faire cela. Demande à un administrateur.",
     "video-not-found": "aucun résultats n'ont été trouvés pour cette recherche.",
     "wrong-argument-error": "je ne comprend pas cet argument.",
-    "no-urls-wallpaper": "oups ! Aucun fond d'écran n'a été trouvé. Tu peux demander à un administrateur d'en ajouter."
+    "no-urls-wallpaper": "oups ! Aucun fond d'écran n'a été trouvé. Tu peux demander à un administrateur d'en ajouter.",
+    "no-valid-url": "veuillez saisir un URL valide."
   },
   "bot_info": {
     "name": "Sashaa",
