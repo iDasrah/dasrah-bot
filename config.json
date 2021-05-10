@@ -14,7 +14,8 @@
     "video-not-found": "aucun résultats n'ont été trouvés pour cette recherche.",
     "wrong-argument-error": "je ne comprend pas cet argument.",
     "no-urls-wallpaper": "oups ! Aucun fond d'écran n'a été trouvé. Tu peux demander à un administrateur d'en ajouter.",
-    "no-valid-url": "veuillez saisir un URL valide."
+    "no-valid-url": "veuillez saisir un URL valide.",
+    "add-wallpaper-success": "le fond d'écran a été ajouté avec succès ! :white_check_mark:"
   },
   "bot_info": {
     "name": "Sashaa",
