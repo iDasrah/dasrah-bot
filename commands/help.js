@@ -32,7 +32,8 @@ function getCommandName(index) {
     if(arg.includes("?")) {
       arg = arg.substring(1);
       args += ` [${arg}]`;
-    } else {
+    } else if (args.includes("!")) {
+      arg = arg.substring(1);
       args += ` <${arg}>`;
     }
   });
