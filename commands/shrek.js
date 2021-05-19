@@ -1,12 +1,11 @@
-const { memes } = require('./shrek.json');
-const Discord = require('discord.js');
+const { memes } = require('./json_files/shrek.json');
+const {MessageEmbed} = require('discord.js');
 
 module.exports = {
   name: "shrek",
-  description: "answers with a random shrek meme.",
-  args: false,
-  execute(message, args) {
-    const embed = new Discord.MessageEmbed()
+  description: "Meme Shrek aléatoire",
+  execute(client, message, args) {
+    const embed = new MessageEmbed()
     .setColor('#41B64C')
     .setTitle('SHREK MEME GENERATOR')
     .setTimestamp()
