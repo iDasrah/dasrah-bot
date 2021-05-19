@@ -8,5 +8,5 @@ module.exports.help = {
   name: 'cuisine',
   description: 'Remettre les femmes à leur place',
   args: true,
-  usage: <utilisateur></utilisateur>
+  usage: '<utilisateur>'
 }
