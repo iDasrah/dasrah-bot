@@ -1,16 +1,14 @@
-const { messages } = require('../../json/config.json');
+const { bot_messages } = require('../../json/config.json');
 
 module.exports.run = async (client, message, args) => {
     if(args[0]) {
-      if(isNaN(args[0])) return message.reply(messages['NaN-arg-error']);
+      if(isNaN(args[0])) return message.reply(bot_messages['NaN-arg-error']);
 
-      if(args[0] > 100) return message.reply(messages['too-much-clear-error']);
-      if(args[0] < 1) return message.reply(messages['not-enough-clear-error']);
+      else if(args[0] > 100) return message.reply(bot_messages['too-much-clear-error']);
+      else if(args[0] < 1) return message.reply(bot_messages['not-enough-clear-error']);
     }
 
-    if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(messages['no-permission-error']);
-
-    if(!args.length) {
+    else if(!args.length) {
       await message.channel.messages.fetch({limit: 100}).then(messages => {
         message.channel.bulkDelete(messages);
       });
@@ -23,5 +21,8 @@ module.exports.run = async (client, message, args) => {
 
 module.exports.help = {
   name: 'clear',
-  description: 'Nettoie le channel'
+  description: 'Nettoie le channel',
+  args: false,
+  permission: 'MANAGE_MESSAGES',
+  usage: '[nombre]'
 }

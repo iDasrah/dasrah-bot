@@ -44,5 +44,7 @@ module.exports.run = (client, message, args) => {
 
 module.exports.help = {
   name: 'dice',
-  description: 'Jeu de dés'
+  description: 'Jeu de dés',
+  args: false,
+  usage: '[duel] <utilisateur>'
 };

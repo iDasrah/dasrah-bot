@@ -1,6 +1,6 @@
 const { mobile, desktop, descriptions } = require('../../json/wallpapers.json');
 const { MessageEmbed } = require('discord.js');
-const { messages } = require('../../json/config.json');
+const { bot_messages } = require('../../json/config.json');
 const editJsonFile = require('edit-json-file');
 
 function random(min, max) {
@@ -43,7 +43,7 @@ function sendWallpaperByDevice(message, device) {
 
   device = (device === desktop) ? 'desktop' : 'mobile';
 
-  if(device.length <= 1) return message.reply(messages['no-urls-wallpaper']);
+  if(device.length <= 1) return message.reply(bot_messages['no-urls-wallpaper']);
 
   embed.setTitle(`${device.toUpperCase()} WALLPAPER GENERATOR`)
   .setImage(image)
@@ -58,7 +58,7 @@ function sendWallpaperByType(message, device, urls) {
   .setTimestamp();
   image = urls[random(0, urls.length)];
 
-  if(urls.length < 1) return message.reply(messages['no-urls-wallpaper']);
+  if(urls.length < 1) return message.reply(bot_messages['no-urls-wallpaper']);
 
   embed.setTitle(`${device.toUpperCase()} WALLPAPER GENERATOR`)
   .setImage(image);
@@ -100,12 +100,12 @@ module.exports.run = (client, message, args) => {
       }
       return sendWallpaperByDevice(message, desktop);
     } else if (args[0] === 'add') {
-      if(!args[1]) return message.reply(messages['not-enough-arguments-error']);
-      if(!(args[1] === 'mobile' || args[1] === 'desktop')) return message.reply(`${messages['wrong-argument-error']} (${args[1]})`);
-      else if(!args[2]) return message.reply(messages['not-enough-arguments-error']);
-      else if(!args[3]) return message.reply(messages['not-enough-arguments-error']);
-      else if(!validURL(args[3])) return message.reply(messages['no-valid-url']);
-      else if(!message.guild.roles.cache.has("840677230555955252")) return message.reply(`${messages['no-permission-error']} Ou à un <@&840677230555955252> !`);
+      if(!args[1]) return message.reply(bot_messages['not-enough-arguments-error']);
+      if(!(args[1] === 'mobile' || args[1] === 'desktop')) return message.reply(`${bot_messages['wrong-argument-error']} (${args[1]})`);
+      else if(!args[2]) return message.reply(bot_messages['not-enough-arguments-error']);
+      else if(!args[3]) return message.reply(bot_messages['not-enough-arguments-error']);
+      else if(!validURL(args[3])) return message.reply(bot_messages['no-valid-url']);
+      else if(!message.guild.roles.cache.has("840677230555955252")) return message.reply(`${bot_messages['no-permission-error']} Ou à un <@&840677230555955252> !`);
       addToList(args[1], args[2], args[3]);
       message.reply(messages['add-wallpaper-success']);
     }
@@ -113,5 +113,7 @@ module.exports.run = (client, message, args) => {
 
 module.exports.help = {
   name: 'wallpaper',
-  description: 'Génère un fond d\'écran aléatoire'
+  description: 'Génère un fond d\'écran aléatoire',
+  args: false,
+  usage: '[mobile/desktop/add] [type]/<appareil> <type> <url>'
 }
