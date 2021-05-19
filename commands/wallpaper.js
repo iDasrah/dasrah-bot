@@ -1,13 +1,12 @@
-const { mobile, desktop, descriptions } = require('./wallpapers.json');
+const { mobile, desktop, descriptions } = require('./json_files/wallpapers.json');
 const { MessageEmbed } = require('discord.js');
 const { messages } = require('../config.json');
-const editJson = require('edit-json-file');
 const editJsonFile = require('edit-json-file');
 
 module.exports = {
   name: "wallpaper",
-  description: "random wallpaper",
-  execute(message, args) {
+  description: "Gérer les fonds d'écran",
+  execute(client, message, args) {
 
     if(!args.length) {
       sendWallpaper(message);
