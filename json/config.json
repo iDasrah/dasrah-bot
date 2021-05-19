@@ -1,10 +1,10 @@
 {
   "prefix": "?",
   "token": "ODI1NzU0OTEwMDExODE3OTg0.YGCiMA.WV84IEyZnOSDtZn4Mqqk_h6Fk1g",
-  "messages": {
-    "no-argument-error": "vous n'avez pas saisi d'arguments ! Fais la commande d'aide.",
-    "not-enough-arguments-error": "j'ai besoin de plus d'arguments pour effectuer cette commande ! Fais la commande d'aide.",
-    "too-much-arguments-error": "vous avez saisi trop d'arguments ! Fais la commande d'aide.",
+  "bot_messages": {
+    "no-argument-error": "vous n'avez pas saisi d'arguments !",
+    "not-enough-arguments-error": "j'ai besoin de plus d'arguments pour effectuer cette commande !",
+    "too-much-arguments-error": "vous avez saisi trop d'arguments !",
     "command-execution-error": "un problème est survenu lors de l'éxécution de la commande.",
     "invalid-command-error": "commande invalide.",
     "NaN-arg-error": "veuillez utiliser un nombre.",
@@ -14,14 +14,15 @@
     "no-permission-error": "tu n'as pas le droit de faire cela. Demande à un administrateur.",
     "video-not-found": "aucun résultats n'ont été trouvés pour cette recherche.",
     "wrong-argument-error": "je ne comprend pas cet argument.",
-    "no-urls-wallpaper": "oups ! Aucun fond d'écran n'a été trouvé. Tu peux demander à un administrateur d'en ajouter.",
+    "no-urls-wallpaper": "oups ! Aucun fond d'écran n'a été trouvé. Tu peux demander à un <@&840677230555955252> d'en ajouter.",
     "no-valid-url": "veuillez saisir un URL valide.",
     "add-wallpaper-success": "le fond d'écran a été ajouté avec succès ! :white_check_mark:",
     "disabled-command": "commande désactivée temporairement...",
     "has-role": "l'utilisateur a dejà ce rôle !",
     "hasnt-role": "l'utilisateur n'a pas ce rôle !",
     "user-dont-have-permission": "ce membre n'a pas la permission d'avoir ce rôle !",
-    "role-doesnt-exist": "ce rôle n'existe pas !"
+    "role-doesnt-exist": "ce rôle n'existe pas !",
+    "no-user-tagged": "vous devez identifier un joueur !"
   },
   "roles": {
     "on-join": "Membre"
