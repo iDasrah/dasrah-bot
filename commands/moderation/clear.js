@@ -8,7 +8,7 @@ module.exports.run = async (client, message, args) => {
       else if(args[0] < 1) return message.reply(bot_messages['not-enough-clear-error']);
     }
 
-    else if(!args.length) {
+    if(!args.length) {
       await message.channel.messages.fetch({limit: 100}).then(messages => {
         message.channel.bulkDelete(messages);
       });
