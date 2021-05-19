@@ -1,5 +1,6 @@
 {
   "prefix": "?",
+  "token": "ODI1NzU0OTEwMDExODE3OTg0.YGCiMA.WV84IEyZnOSDtZn4Mqqk_h6Fk1g",
   "messages": {
     "no-argument-error": "vous n'avez pas saisi d'arguments ! Fais la commande d'aide.",
     "not-enough-arguments-error": "j'ai besoin de plus d'arguments pour effectuer cette commande ! Fais la commande d'aide.",
@@ -15,7 +16,12 @@
     "wrong-argument-error": "je ne comprend pas cet argument.",
     "no-urls-wallpaper": "oups ! Aucun fond d'écran n'a été trouvé. Tu peux demander à un administrateur d'en ajouter.",
     "no-valid-url": "veuillez saisir un URL valide.",
-    "add-wallpaper-success": "le fond d'écran a été ajouté avec succès ! :white_check_mark:"
+    "add-wallpaper-success": "le fond d'écran a été ajouté avec succès ! :white_check_mark:",
+    "disabled-command": "commande désactivée temporairement...",
+    "has-role": "l'utilisateur a dejà ce rôle !",
+    "hasnt-role": "l'utilisateur n'a pas ce rôle !",
+    "user-dont-have-permission": "ce membre n'a pas la permission d'avoir ce rôle !",
+    "role-doesnt-exist": "ce rôle n'existe pas !"
   },
   "bot_info": {
     "name": "Sashaa",
