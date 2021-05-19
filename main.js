@@ -1,35 +1,31 @@
 // imports
 const { Client, Collection } = require('discord.js');
-const fs = require('fs');
-const { prefix, token, messages, bot_info } = require('./config.json');
+const { prefix, token, messages, bot_info, roles } = require('./json/config.json');
+const { readdirSync } = require('fs');
 
 const client = new Client();
 client.commands = new Collection();
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+const loadCommands = (dir = "./commands/") => {
+	readdirSync(dir).forEach((dirs) => {
+		const commandFiles = readdirSync(`${dir}/${dirs}/`).filter(files => files.endsWith('.js'));
 
-for(const file of commandFiles) {
-	const command = require(`./commands/${file}`);
-	client.commands.set(command.name, command);
-	console.log(`Commande chargée: ${command.name}`);
-}
-const Commands = client.commands;
+		for(const file of commandFiles) {
+			const getFileName = require(`${dir}/${dirs}/${file}`);
+			client.commands.set(getFileName.help.name, getFileName);
+			console.log(`Commande chargée: ${getFileName.help.name}`)
+		};
+	});
+};
 
-client.on('ready', () => {
-	console.log(`${bot_info.name}: I'm ready !`);
-
-	// status
-	client.user.setPresence({
-		activity: {
-			name: `${prefix}help pour de l'aide`
-		}
-	})
-});
+loadCommands();
 
 // on member join
 client.on('guildMemberAdd', (member) => {
 	const channel = member.guild.channels.cache.find(ch => ch.name === 'portail');
+	const role = message.guild.roles.cache.find(role => role.name === roles['on-join']);
 	if(!channel) return;
 	channel.send(`Salut mec ! ${member}`);
+	member.roles.add(role);
 });
 
 // on member quit
@@ -52,11 +48,21 @@ client.on('message', message => {
 	const command = client.commands.get(commandName);
 
 	try {
-		command.execute(client, message, args);
+		command.run(client, message, args);
 	} catch(error) {
 		console.error(error);
 		message.reply(messages['command-execution-error']);
 	}
 });
 
+client.on('ready', () => {
+	console.log(`${bot_info.name}: I'm ready !`);
+
+	// status
+	client.user.setPresence({
+		activity: {
+			name: `${prefix}help pour de l'aide`
+		}
+	})
+});
 client.login(token);
