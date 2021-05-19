@@ -1,12 +1,12 @@
-const Discord = require('discord.js');
-const {messages} = require('./avatar.json');
+const {MessageEmbed} = require('discord.js');
+const {messages} = require('./json_files/avatar.json');
 
 module.exports = {
   name: 'avatar',
-  description: 'avatar {user} retourne l\'avatar de l\'utilisateur.',
-  execute(message, args) {
+  description: 'Retourne l\'avatar d\'un utilisateur.',
+  execute(client, message, args) {
 
-    const embed = new Discord.MessageEmbed()
+    const embed = new MessageEmbed()
     .setColor('#69D8C9')
     .setDescription(messages[random(0, messages.length)])
     .setTimestamp();
