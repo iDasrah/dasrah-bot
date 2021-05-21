@@ -9,7 +9,7 @@ const client = new Client();
 
 // collections
 ["commands"].forEach(collection => client[collection] = new Collection());
-let memes = new Set();
+let memes = [];
 
 // chargement des scripts de commande
 const loadCommands = (dir = "./commands/") => {
@@ -28,15 +28,15 @@ const memeFiles = readdirSync('./json').filter(file => file.includes('maths') ||
 
 for(const memeFile of memeFiles) {
 	const file = require(`./json/${memeFile}`);
-	file.memes.forEach(url => memes.add(url));
+	file.memes.forEach(meme => memes.push(meme.url));
 }
 
 loadCommands();
 
 // quand le bot s'allume
 client.on('ready', () => {
-
-	console.log(`${memes.size} memes chargés !`);
+	console.log(memes);
+	console.log(`${memes.length} memes chargés !`);
 	console.log(`${bot_info.name}: I'm ready !`);
 
 	// status
@@ -55,7 +55,7 @@ client.on('ready', () => {
 		.setColor('#FE2EE4')
 		.setTitle('RANDOM MEME GENERATOR')
 		.setTimestamp()
-		.setImage(client.memes.get('urls')[Math.floor(Math.random() * client.memes.get('urls').length)].url);
+		.setImage(memes[Math.floor(Math.random() * memes.length)]);
 		channel.send(embed);
 	}, memeInterval);
 
