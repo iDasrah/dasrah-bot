@@ -1,15 +1,15 @@
 "use strict";
 
 // imports
-const { Client, Collection, MessageEmbed, Guild } = require('discord.js');
+const { Client, Collection, MessageEmbed } = require('discord.js');
 const { prefix, token, bot_messages, bot_info, roles } = require('./json/config.json');
 const { readdirSync } = require('fs');
-const { memes } = require('./json/maths.json');
 
 const client = new Client();
 
 // collections
-["commands", "cooldowns"].forEach(collection => client[collection] = new Collection());
+["commands"].forEach(collection => client[collection] = new Collection());
+let memes = new Set();
 
 // chargement des scripts de commande
 const loadCommands = (dir = "./commands/") => {
@@ -19,19 +19,24 @@ const loadCommands = (dir = "./commands/") => {
 		for(const file of commandFiles) {
 			const getFileName = require(`${dir}/${dirs}/${file}`);
 			client.commands.set(getFileName.help.name, getFileName);
-			console.log(`Commande chargée: ${getFileName.help.name}`)
+			console.log(`Commande chargée: ${getFileName.help.name}`);
 		};
 	});
 };
 
+const memeFiles = readdirSync('./json').filter(file => file.includes('maths') || file.includes('shrek'));
 
-// meme intervalle
-const memeInterval = 10 * 60 * 1000;
+for(const memeFile of memeFiles) {
+	const file = require(`./json/${memeFile}`);
+	file.memes.forEach(url => memes.add(url));
+}
 
 loadCommands();
 
 // quand le bot s'allume
 client.on('ready', () => {
+
+	console.log(`${memes.size} memes chargés !`);
 	console.log(`${bot_info.name}: I'm ready !`);
 
 	// status
@@ -41,14 +46,16 @@ client.on('ready', () => {
 		}
 	});
 
+	// meme intervalle
+	const memeInterval = 10 * 60 * 1000;
 	client.setInterval(() => {
-		console.log('Sent a math meme!')
+		console.log('Sent a meme!')
 		const channel = client.channels.cache.get('845273490764333057');
 		const embed = new MessageEmbed()
 		.setColor('#FE2EE4')
-		.setTitle('MATH MEME GENERATOR')
+		.setTitle('RANDOM MEME GENERATOR')
 		.setTimestamp()
-		.setImage(memes[Math.floor(Math.random() * memes.length)].url);
+		.setImage(client.memes.get('urls')[Math.floor(Math.random() * client.memes.get('urls').length)].url);
 		channel.send(embed);
 	}, memeInterval);
 
@@ -94,6 +101,7 @@ client.on('message', message => {
 	// si pas la permission
 	else if(!message.member.hasPermission(command.help.permission)) return message.reply(bot_messages['no-permission-error']);
 
+	// si trop d'arguments
 	else if(args.length > command.help.args[1]) return message.reply(`${bot_messages['too-much-arguments-error']}\r\n\`${prefix}${command.help.name} ${command.help.usage}\``);
 
 	try {
