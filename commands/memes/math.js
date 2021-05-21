@@ -9,7 +9,7 @@ function random(min, max) {
 
 module.exports.run = (client, message, args) => {
   const embed = new MessageEmbed()
-    .setColor('#41B64C')
+    .setColor('#FE2EE4')
     .setTitle('MATH MEME GENERATOR')
     .setTimestamp()
     .setImage(memes[random(0, memes.length)].url);
@@ -18,5 +18,6 @@ module.exports.run = (client, message, args) => {
 
 module.exports.help = {
   name: 'math',
-  description: 'Génère un meme de maths aléatoire'
+  description: 'Génère un meme de maths aléatoire',
+  args: [false, 0]
 }

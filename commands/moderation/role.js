@@ -59,7 +59,7 @@ module.exports.run = (client, message, args) => {
 module.exports.help = {
   name: 'role',
   description: 'Gérer les rôles',
-  args: true,
+  args: [true, 3],
   permission: 'MANAGE_ROLES',
   usage: '<add/adds/remove/removes> <utilisateur> <role/roles>'
 }

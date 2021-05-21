@@ -114,6 +114,6 @@ module.exports.run = (client, message, args) => {
 module.exports.help = {
   name: 'wallpaper',
   description: 'Génère un fond d\'écran aléatoire',
-  args: false,
+  args: [false, 4],
   usage: '[mobile/desktop/add] [type]/<appareil> <type> <url>'
 }

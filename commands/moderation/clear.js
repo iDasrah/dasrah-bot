@@ -22,7 +22,8 @@ module.exports.run = async (client, message, args) => {
 module.exports.help = {
   name: 'clear',
   description: 'Nettoie le channel',
-  args: false,
+  args: [false, 1],
   permission: 'MANAGE_MESSAGES',
-  usage: '[nombre]'
+  usage: '[nombre]',
+  cooldown: 5
 }

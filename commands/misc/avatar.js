@@ -31,6 +31,6 @@ module.exports.run = (client, message, args) => {
 module.exports.help = {
   name: 'avatar',
   description: 'Envoie l\'avatar de l\'utilisateur',
-  args: false,
+  args: [false, 1],
   usage: '[utilisateur]'
 }
