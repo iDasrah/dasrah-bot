@@ -1,12 +1,17 @@
 "use strict";
 
 // imports
-const { Client, Collection, MessageEmbed } = require('discord.js');
+const { Client, Collection, MessageEmbed, Guild } = require('discord.js');
 const { prefix, token, bot_messages, bot_info, roles } = require('./json/config.json');
 const { readdirSync } = require('fs');
+const { memes } = require('./json/maths.json');
 
 const client = new Client();
-client.commands = new Collection();
+
+// collections
+["commands", "cooldowns"].forEach(collection => client[collection] = new Collection());
+
+// chargement des scripts de commande
 const loadCommands = (dir = "./commands/") => {
 	readdirSync(dir).forEach((dirs) => {
 		const commandFiles = readdirSync(`${dir}/${dirs}/`).filter(files => files.endsWith('.js'));
@@ -19,20 +24,37 @@ const loadCommands = (dir = "./commands/") => {
 	});
 };
 
+
+// meme intervalle
+const memeInterval = 10 * 60 * 1000;
+
 loadCommands();
 
+// quand le bot s'allume
 client.on('ready', () => {
 	console.log(`${bot_info.name}: I'm ready !`);
 
 	// status
 	client.user.setPresence({
 		activity: {
-			name: `${prefix}help pour de l'aide`
+			name: ``
 		}
-	})
+	});
+
+	client.setInterval(() => {
+		console.log('Sent a math meme!')
+		const channel = client.channels.cache.get('845273490764333057');
+		const embed = new MessageEmbed()
+		.setColor('#FE2EE4')
+		.setTitle('MATH MEME GENERATOR')
+		.setTimestamp()
+		.setImage(memes[Math.floor(Math.random() * memes.length)].url);
+		channel.send(embed);
+	}, memeInterval);
+
 });
 
-// on member join
+// nouveau membre
 client.on('guildMemberAdd', (member) => {
 	const channel = member.guild.channels.cache.get('840203319254188063');
 	const role = member.guild.roles.cache.find((role) => role.name === roles['on-join']);
@@ -41,7 +63,7 @@ client.on('guildMemberAdd', (member) => {
 	member.roles.add(role);
 });
 
-// on member quit
+// membre quitte
 client.on('guildMemberRemove', (member) => {
 	const channel = member.guild.channels.cache.get('840203319254188063');
 	if(!channel) return;
@@ -60,7 +82,8 @@ client.on('message', message => {
 
 	const command = client.commands.get(commandName);
 
-	if(command.help.args && !args.length) {
+	// si pas d'argument
+	if(command.help.args[0] && !args.length) {
 		const embed = new MessageEmbed()
 		.setTitle("ERROR: NO-ARGUMENT-ERROR")
 		.setColor('#A80506')
@@ -68,7 +91,10 @@ client.on('message', message => {
 		.addField('Usage', `${prefix}${command.help.name} ${command.help.usage}`);
 		return message.reply(embed);
 	}
+	// si pas la permission
 	else if(!message.member.hasPermission(command.help.permission)) return message.reply(bot_messages['no-permission-error']);
+
+	else if(args.length > command.help.args[1]) return message.reply(`${bot_messages['too-much-arguments-error']}\r\n\`${prefix}${command.help.name} ${command.help.usage}\``);
 
 	try {
 		command.run(client, message, args);
