@@ -25,7 +25,7 @@ module.exports.run = (client, message, args) => {
       else embed.setFooter(`VICTOIRE DE ${client.user.username}`);
       }
 
-      if(args[0] === 'duel') {
+      else if(args[0] === 'duel') {
         const taggedUser = message.mentions.users.first();
         if(!taggedUser) return message.reply(bot_messages['no-user-tagged']);
         const number1 = number();
@@ -45,6 +45,7 @@ module.exports.run = (client, message, args) => {
 module.exports.help = {
   name: 'dice',
   description: 'Jeu de dés',
-  args: [false, 2],
-  usage: '[duel] <utilisateur>'
+  args: [false, [2, '']],
+  usage: '[duel] <utilisateur>',
+  category: 'games'
 };
