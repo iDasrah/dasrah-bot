@@ -2,7 +2,7 @@
 
 // imports
 const { Client, Collection, MessageEmbed } = require('discord.js');
-const { prefix, token, bot_messages, bot_info, roles } = require('./json/config.json');
+const { prefix, token, bot_messages, bot_info, roles, intervalMeme } = require('./json/config.json');
 const { readdirSync } = require('fs');
 
 const client = new Client();
@@ -35,19 +35,18 @@ loadCommands();
 
 // quand le bot s'allume
 client.on('ready', () => {
-	console.log(memes);
 	console.log(`${memes.length} memes chargés !`);
 	console.log(`${bot_info.name}: I'm ready !`);
 
 	// status
 	client.user.setPresence({
 		activity: {
-			name: ``
+			name: `${prefix}help pour de l'aide.`
 		}
 	});
 
 	// meme intervalle
-	const memeInterval = 10 * 60 * 1000;
+	const memeInterval = intervalMeme * 60 * 1000;
 	client.setInterval(() => {
 		console.log('Sent a meme!')
 		const channel = client.channels.cache.get('845273490764333057');
@@ -72,9 +71,9 @@ client.on('guildMemberAdd', (member) => {
 
 // membre quitte
 client.on('guildMemberRemove', (member) => {
-	const channel = member.guild.channels.cache.get('840203319254188063');
+	const channel = member.guild.channels.cache.get('846288755480592435');
 	if(!channel) return;
-	channel.send(`C'est ça, casse toi, ${member}.`)
+	channel.send(`Pourquoi t'es parti ${member} :(`)
 });
 
 
@@ -103,6 +102,9 @@ client.on('message', message => {
 
 	// si trop d'arguments
 	else if(args.length > command.help.args[1]) return message.reply(`${bot_messages['too-much-arguments-error']}\r\n\`${prefix}${command.help.name} ${command.help.usage}\``);
+
+	// si pas assez d'arguments
+	else if(args.length < command.help.args[1][0] && command.help.args[1][1] === 'strict') return message.reply(`${bot_messages['not-enough-arguments-error']}\r\n\`${prefix}${command.help.name} ${command.help.usage}\``)
 
 	try {
 		command.run(client, message, args);
