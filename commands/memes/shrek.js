@@ -21,5 +21,6 @@ module.exports.help = {
   description: 'Génère un meme aléatoire de shrek',
   args: [false, [0, '']],
   category: 'memes',
-  usage: ''
+  usage: '',
+  aliases: []
 };

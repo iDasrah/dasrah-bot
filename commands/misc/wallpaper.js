@@ -116,5 +116,6 @@ module.exports.help = {
   description: 'Génère un fond d\'écran aléatoire',
   args: [false, [4, '']],
   usage: '[mobile/desktop/add] [type]/<appareil> <type> <url>',
-  category: 'misc'
+  category: 'misc',
+  aliases: ['wp']
 }

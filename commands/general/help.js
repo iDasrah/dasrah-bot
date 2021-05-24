@@ -24,7 +24,7 @@ module.exports.run = (client, message, args) => {
     .addField(`Description`, `${command.help.description}`)
     .addField(`Utilisation`, `${prefix}${command.help.name} ${command.help.usage}`);
 
-    // if(command.help.aliases.length > 1) embed.addField('Aliases', `${command.help.aliases.join(', ')}`, true);
+    if(command.help.aliases.length) embed.addField('Aliases', `${command.help.aliases.join(', ')}`, true);
     return message.channel.send(embed);
     }
   }
@@ -34,5 +34,6 @@ module.exports.help = {
   description: 'Informations sur les commandes du bot',
   category: 'general',
   usage: '[commande]',
-  args: [false, [1, '']]
+  args: [false, [1, '']],
+  aliases: ['h']
 }

@@ -8,5 +8,6 @@ module.exports.help = {
   description: 'Sheesh',
   args: [false, [0, '']],
   usage: '',
-  category: 'fun'
+  category: 'fun',
+  aliases: []
 }

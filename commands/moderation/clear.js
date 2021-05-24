@@ -26,5 +26,6 @@ module.exports.help = {
   permission: 'MANAGE_MESSAGES',
   usage: '[nombre]',
   cooldown: 5,
-  category: 'moderation'
+  category: 'moderation',
+  aliases: ['c']
 }

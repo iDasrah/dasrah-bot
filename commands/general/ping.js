@@ -7,5 +7,6 @@ module.exports.help = {
 	description: 'Envoie Pong!',
 	args: [false, [0, '']],
 	category: 'general',
-	usage: ''
+	usage: '',
+	aliases: []
 };

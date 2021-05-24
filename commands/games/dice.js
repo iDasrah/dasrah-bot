@@ -47,5 +47,6 @@ module.exports.help = {
   description: 'Jeu de dés',
   args: [false, [2, '']],
   usage: '[duel] <utilisateur>',
-  category: 'games'
+  category: 'games',
+  aliases: ['d']
 };

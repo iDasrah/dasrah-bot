@@ -62,5 +62,6 @@ module.exports.help = {
   args: [true, [3, 'strict']],
   permission: 'MANAGE_ROLES',
   usage: '<add/adds/remove/removes> <utilisateur> <role/roles>',
-  category: 'moderation'
+  category: 'moderation',
+  aliases: ['r']
 }

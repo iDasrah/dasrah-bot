@@ -84,9 +84,9 @@ client.on('message', message => {
 	const args = message.content.slice(prefix.length).trim().split(/ +/);
 	const commandName = args.shift().toLowerCase();
 
-	if(!client.commands.has(commandName)) return message.reply(bot_messages['invalid-command-error']);
+	const command = client.commands.get(commandName) || client.commands.find(cmd => cmd.help.aliases && cmd.help.aliases.includes(commandName));
 
-	const command = client.commands.get(commandName);
+	if(!command) return message.reply(bot_messages['invalid-command-error']);
 
 	// si pas d'argument
 	if(command.help.args[0] && !args.length) {

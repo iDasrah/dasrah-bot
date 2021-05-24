@@ -33,5 +33,6 @@ module.exports.help = {
   description: 'Envoie l\'avatar de l\'utilisateur',
   args: [false, [1, '']],
   usage: '[utilisateur]',
-  category: 'misc'
+  category: 'misc',
+  aliases: ['pp', 'a']
 }

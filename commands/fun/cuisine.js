@@ -15,5 +15,6 @@ module.exports.help = {
   description: 'Remettre les femmes à leur place',
   args: [true, [1, 'strict']],
   usage: '<utilisateur>',
-  category: 'fun'
+  category: 'fun',
+  aliases: []
 }

@@ -21,5 +21,6 @@ module.exports.help = {
   description: 'Génère un meme de maths aléatoire',
   args: [false, [0, '']],
   category: 'memes',
-  usage: ''
+  usage: '',
+  aliases: ['maths']
 }
