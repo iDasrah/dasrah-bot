@@ -1,6 +1,7 @@
 const { readdirSync } = require('fs');
 const { memeFiles } = require('../../main');
 const { bot_info, prefix, intervalMeme } = require('../../json/config.json');
+const { MessageEmbed } = require('discord.js');
 
 let memes = [];
 
