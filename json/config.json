@@ -23,7 +23,8 @@
     "user-dont-have-permission": "ce membre n'a pas la permission d'avoir ce rôle !",
     "role-doesnt-exist": "ce rôle n'existe pas !",
     "no-user-tagged": "vous devez identifier un joueur !",
-    "cooldown": "Cooldown activé pour cette commande ! Veuillez attendre "
+    "cooldown": "Cooldown activé pour cette commande ! Veuillez attendre ",
+    "help-invalid-command": "je ne trouve pas d'informations sur cette commande..."
   },
   "roles": {
     "on-join": "Membre"
@@ -31,5 +32,6 @@
   "bot_info": {
     "name": "Sashaa",
     "version": 1
-  }
+  },
+  "intervalMeme": "30"
 }

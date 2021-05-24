@@ -19,5 +19,7 @@ module.exports.run = (client, message, args) => {
 module.exports.help = {
   name: 'shrek',
   description: 'Génère un meme aléatoire de shrek',
-  args: [false, 0]
+  args: [false, [0, '']],
+  category: 'memes',
+  usage: ''
 };

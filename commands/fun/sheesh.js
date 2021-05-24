@@ -6,6 +6,7 @@ module.exports.run = (client, message, args) => {
 module.exports.help = {
   name: 'sheesh',
   description: 'Sheesh',
-  args: [false, 0],
-  usage: ''
+  args: [false, [0, '']],
+  usage: '',
+  category: 'fun'
 }

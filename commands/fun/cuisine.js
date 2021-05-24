@@ -13,6 +13,7 @@ module.exports.run = (client, message, args) => {
 module.exports.help = {
   name: 'cuisine',
   description: 'Remettre les femmes à leur place',
-  args: [true, 1],
-  usage: '<utilisateur>'
+  args: [true, [1, 'strict']],
+  usage: '<utilisateur>',
+  category: 'fun'
 }

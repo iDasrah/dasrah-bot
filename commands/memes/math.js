@@ -19,5 +19,7 @@ module.exports.run = (client, message, args) => {
 module.exports.help = {
   name: 'math',
   description: 'Génère un meme de maths aléatoire',
-  args: [false, 0]
+  args: [false, [0, '']],
+  category: 'memes',
+  usage: ''
 }
