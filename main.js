@@ -42,8 +42,4 @@ module.exports.memeFiles = readdirSync('./json/').filter(file => file.includes('
 loadCommands();
 loadEvents();
 
-
-
-
-
 client.login(token);

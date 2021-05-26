@@ -17,38 +17,38 @@ function removeRole(taggedMember, role, message) {
 }
 
 module.exports.run = (client, message, args) => {
-  
+
+    const action = args[0];
     const taggedMember = message.mentions.members.first();
-    let role = '';
+    let roleArgs = args.splice(2)
 
-    if(!taggedMember) return message.reply(bot_messages['not-enough-arguments-error']);
+    if(!taggedMember) return message.reply(bot_messages['no-user-tagged']);
 
-    if(args[0] === 'add') {
+    if(action === 'add') {
 
-      if(args.length != 3) return message.reply(bot_messages['not-enough-arguments-error']);
-
-      role = message.guild.roles.cache.find(role => role.name === args[2]);
+      roleArgs = roleArgs.join(' ');
+      const role = message.guild.roles.cache.find(role => role.name === roleArgs);
       addRole(taggedMember, role, message);
 
-    } else if(args[0] === 'remove') {
+    } else if(action === 'remove') {
 
-      if(args.length != 3) return message.reply(bot_messages['not-enough-arguments-error']);
-      role = message.guild.roles.cache.find(role => role.name === args[2]);
+      roleArgs = roleArgs.join(' ');
+      const role = message.guild.roles.cache.find(role => role.name === roleArgs);
       removeRole(taggedMember, role, message);
 
-    } else if(args[0] === 'adds') {
+    } else if(action === 'adds') {
 
       args = args.slice(2);
       args.forEach((arg) => {
-        role = message.guild.roles.cache.find(role => role.name === arg.toString());
+        const role = message.guild.roles.cache.find(role => role.name === arg.toString());
         console.log(role);
         addRole(taggedMember, role, message);
 
       });
-    } else if(args[0] === 'removes') {
+    } else if(action === 'removes') {
       args = args.slice(2);
       args.forEach((arg) => {
-        role = message.guild.roles.cache.find(role => role.name === arg.toString());
+        const role = message.guild.roles.cache.find(role => role.name === arg.toString());
         console.log(role);
         removeRole(taggedMember, role, message);
 

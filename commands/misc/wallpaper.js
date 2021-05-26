@@ -2,6 +2,7 @@ const { mobile, desktop, descriptions } = require('../../json/wallpapers.json');
 const { MessageEmbed } = require('discord.js');
 const { bot_messages } = require('../../json/config.json');
 const editJsonFile = require('edit-json-file');
+const { isURL } = require('validator');
 
 function random(min, max) {
 
@@ -73,16 +74,6 @@ function addToList(device, type, url) {
   file.save();
 }
 
-function validURL(url) {
-  var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
-    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
-    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
-    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
-    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
-    '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
-  return !!pattern.test(url);
-}
-
 module.exports.run = (client, message, args) => {
 
     if(!args.length) {
@@ -90,22 +81,34 @@ module.exports.run = (client, message, args) => {
     }
 
     else if(args[0] === 'mobile') {
+
       if(args[1]) {
         return sendWallpaperByType(message, args[0], getFromType(args[0], args[1]));
       }
+
       return sendWallpaperByDevice(message, mobile);
     } else if(args[0] === 'desktop') {
+
       if(args[1]) {
         return sendWallpaperByType(message, args[0], getFromType(args[0], args[1]));
       }
       return sendWallpaperByDevice(message, desktop);
+
     } else if (args[0] === 'add') {
+
       if(!args[1]) return message.reply(bot_messages['not-enough-arguments-error']);
-      if(!(args[1] === 'mobile' || args[1] === 'desktop')) return message.reply(`${bot_messages['wrong-argument-error']} (${args[1]})`);
+
+      else if(!(args[1] === 'mobile' || args[1] === 'desktop')) return message.reply(`${bot_messages['wrong-argument-error']} (${args[1]})`);
+
       else if(!args[2]) return message.reply(bot_messages['not-enough-arguments-error']);
+
       else if(!args[3]) return message.reply(bot_messages['not-enough-arguments-error']);
-      else if(!validURL(args[3])) return message.reply(bot_messages['no-valid-url']);
-      else if(!message.guild.roles.cache.has("840677230555955252")) return message.reply(`${bot_messages['no-permission-error']} Ou à un <@&840677230555955252> !`);
+
+      else if(!isURL(args[3])) return message.reply(bot_messages['no-valid-url']);
+
+      else if(!message.guild.roles.cache.has("840677230555955252")) return message.reply(`$
+      {bot_messages['no-permission-error']} Ou à un <@&840677230555955252> !`);
+
       addToList(args[1], args[2], args[3]);
       message.reply(messages['add-wallpaper-success']);
     }

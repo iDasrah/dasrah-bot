@@ -3,18 +3,25 @@ module.exports = (client, messageReaction, user) => {
   const member = message.guild.members.cache.get(user.id);
   const emoji = messageReaction.emoji.name;
   const channel = message.guild.channels.cache.find(c => c.id === '846459783674593371');
+  const rolesCache = message.guild.roles.cache;
 
-  const bronze = message.guild.roles.cache.get('846328120289525781');
-  const silver = message.guild.roles.cache.get('846328390147112981');
-  const gold = message.guild.roles.cache.get('846328466509135873');
-  const platinum = message.guild.roles.cache.get('846328611014705162');
-  const diamond = message.guild.roles.cache.get('846328675430563870');
-  const champion = message.guild.roles.cache.get('846328670485217281');
-  const grandChampion = message.guild.roles.cache.get('846328873892839456');
-  const ssl = message.guild.roles.cache.get('846329006240563200');
+  const bronze = rolesCache.get('846328120289525781');
+  const silver = rolesCache.get('846328390147112981');
+  const gold = rolesCache.get('846328466509135873');
+  const platinum = rolesCache.get('846328611014705162');
+  const diamond = rolesCache.get('846328675430563870');
+  const champion = rolesCache.get('846328670485217281');
+  const grandChampion = rolesCache.get('846328873892839456');
+  const ssl = rolesCache.get('846329006240563200');
+  const man = rolesCache.get('844710960496377864');
+  const woman = rolesCache.get('844679115189125122');
+  const playstation = rolesCache.get('846432721139793960');
+  const nswitch = rolesCache.get('846432745453387776');
+  const windows = rolesCache.get('846432682246144082');
+  const xbox = rolesCache.get('846432780253396994');
 
   if(member.user.bot) return;
-  if(['bronze1', 'silv1', 'gold1', 'plat1', 'diam1', 'c1', 'gc1', 'ssl'].includes(emoji) && message.channel.id === channel.id) {
+  if(['bronze1', 'silv1', 'gold1', 'plat1', 'diam1', 'c1', 'gc1', 'ssl', 'sign_male', 'sign_female', 'playstation', 'windows_10', 'switch', 'xbox'].includes(emoji) && message.channel.id === channel.id) {
     switch(emoji){
       case 'bronze1':
         member.roles.remove(bronze);
@@ -54,6 +61,36 @@ module.exports = (client, messageReaction, user) => {
       case 'ssl':
         member.roles.remove(ssl);
         message.channel.send(`${member}, vous n'avez plus le rôle ${ssl.toString()}.`)
+        .then(msg => msg.delete({timeout: 3000}));
+        break;
+      case 'sign_male':
+        member.roles.remove(man);
+        message.channel.send(`${member}, vous n'avez plus le rôle ${man.toString()}.`)
+        .then(msg => msg.delete({timeout: 3000}));
+        break;
+      case 'sign_female':
+        member.roles.remove(woman);
+        message.channel.send(`${member}, vous n'avez plus le rôle ${woman.toString()}.`)
+        .then(msg => msg.delete({timeout: 3000}));
+        break;
+      case 'playstation':
+        member.roles.remove(playstation);
+        message.channel.send(`${member}, vous n'avez plus le rôle ${playstation.toString()}.`)
+        .then(msg => msg.delete({timeout: 3000}));
+        break;
+      case 'windows_10':
+        member.roles.remove(windows);
+        message.channel.send(`${member}, vous n'avez plus le rôle ${windows.toString()}.`)
+        .then(msg => msg.delete({timeout: 3000}));
+        break;
+      case 'xbox':
+        member.roles.remove(xbox);
+        message.channel.send(`${member}, vous n'avez plus le rôle ${xbox.toString()}.`)
+        .then(msg => msg.delete({timeout: 3000}));
+        break;
+      case 'switch':
+        member.roles.remove(nswitch);
+        message.channel.send(`${member}, vous n'avez plus le rôle ${nswitch.toString()}.`)
         .then(msg => msg.delete({timeout: 3000}));
         break;
     };

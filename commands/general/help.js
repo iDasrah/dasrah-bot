@@ -4,6 +4,9 @@ const { readdirSync } = require('fs');
 const categoryList = readdirSync('./commands');
 
 module.exports.run = (client, message, args) => {
+
+  const commandArg = args[0];
+
   if(!args.length) {
     const embed = new MessageEmbed()
     .setColor('#36394F')
@@ -16,7 +19,7 @@ module.exports.run = (client, message, args) => {
     }
     return message.channel.send(embed);
   } else {
-    const command = client.commands.get(args[0]);
+    const command = client.commands.get(commandArg);
     if(!command) return message.reply(bot_messages['help-invalid-command']);
     const embed = new MessageEmbed()
     .setColor('#36394F')

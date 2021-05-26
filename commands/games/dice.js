@@ -4,6 +4,9 @@ const { bot_messages, prefix } = require('../../json/config.json');
 const number = () => Math.floor(Math.random() * 6 + 1);
 
 module.exports.run = (client, message, args) => {
+
+    const action = args[0];
+
     const embed = new MessageEmbed()
     .setColor('#E72021')
     .setTimestamp()
@@ -25,7 +28,7 @@ module.exports.run = (client, message, args) => {
       else embed.setFooter(`VICTOIRE DE ${client.user.username}`);
       }
 
-      else if(args[0] === 'duel') {
+      else if(action === 'duel') {
         const taggedUser = message.mentions.users.first();
         if(!taggedUser) return message.reply(bot_messages['no-user-tagged']);
         const number1 = number();

@@ -19,7 +19,7 @@ module.exports.run = (client, message, args) => {
       embed.setTitle(`AVATAR DE ${message.author.username.toUpperCase()}`)
       embed.setImage(message.author.displayAvatarURL());
       message.reply(embed);
-    } else if(args.length) {
+    } else {
 	    const taggedUser = message.mentions.users.first();
       if(!taggedUser) return message.reply(bot_messages['no-user-tagged']);
       embed.setTitle(`AVATAR DE ${taggedUser.username.toUpperCase()}`);
