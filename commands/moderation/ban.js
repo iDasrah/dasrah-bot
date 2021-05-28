@@ -1,3 +1,6 @@
+const { MessageEmbed } = require('discord.js');
+const { bot_messages } = require('../../json/config.json');
+
 module.exports.run = (client, message, args) => {
   const reason = args.splice(1).join(' ') || 'Raison non spécifiée.';
   const taggedUser = message.mentions.users.first();
@@ -19,7 +22,7 @@ module.exports.help = {
   description: 'Bannir un membre',
   args: [true, [100, '']],
   usage: '<membre> [raison]',
-  category: '',
+  category: 'moderation',
   aliases: ['b'],
   permission: 'BAN_MEMBERS'
 }
