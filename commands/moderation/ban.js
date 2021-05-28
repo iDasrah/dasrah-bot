@@ -12,7 +12,7 @@ module.exports.run = (client, message, args) => {
   .setTimestamp();
 
   if(!taggedUser) return message.reply(bot_messages['no-user-tagged']);
-  taggedUser ? message.guild.member(taggedUser).ban(reason) : message.reply(bot_messages['user-not-found']);
+  taggedUser ? message.guild.member(taggedUser).ban({reason: reason}) : message.reply(bot_messages['user-not-found']);
 
   return client.channels.cache.get('846288755480592435').send(embed);
 }
