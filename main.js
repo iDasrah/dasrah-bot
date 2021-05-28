@@ -36,9 +36,6 @@ const loadEvents = (dir = "./events/") => {
 	});
 };
 
-// fichiers de memes
-module.exports.memeFiles = readdirSync('./json/').filter(file => file.includes('maths') || file.includes('shrek'));
-
 loadCommands();
 loadEvents();
 

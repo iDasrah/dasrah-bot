@@ -1,4 +1,4 @@
-const { memes } = require('../../json/shrek.json');
+const { shrek } = require('../../json/memes.json');
 const { MessageEmbed } = require('discord.js');
 
 function random(min, max) {
@@ -12,7 +12,7 @@ module.exports.run = (client, message, args) => {
     .setColor('#41B64C')
     .setTitle('SHREK MEME GENERATOR')
     .setTimestamp()
-    .setImage(memes[random(0, memes.length)].url);
+    .setImage(shrek[random(0, shrek.length)].url);
     message.channel.send(embed);
 };
 

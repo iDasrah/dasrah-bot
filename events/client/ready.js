@@ -1,15 +1,17 @@
-const { readdirSync } = require('fs');
-const { memeFiles } = require('../../main');
 const { bot_info, prefix, intervalMeme } = require('../../json/config.json');
 const { MessageEmbed } = require('discord.js');
+const memes = require('../../json/memes.json');
 
-let memes = [];
+let memesList = [];
 
-for(const memeFile of memeFiles) {
-	const file = require(`../../json/${memeFile}`);
-	file.memes.forEach(meme => memes.push(meme.url));
+// chargement de tous les memes dans la liste
+for(const category in memes) {
+	for(const meme in memes[category]){
+		memesList.push(memes[category][meme].url);
+	}
 }
 
+// chargement des embeds prédéfinis
 embedRL = () => {
 	const embed = new MessageEmbed().setTimestamp();
 	embed.setTitle('ROCKET LEAGUE RANKS')
@@ -60,7 +62,7 @@ embedPLATFORM = () => {
 
 module.exports = (client) => {
 
-	console.log(`${memes.length} memes chargés !`);
+	console.log(`${memesList.length} memes chargés !`);
 
 	const guild = client.guilds.cache.get('825753614898167848');
 	const roleChannel = guild.channels.cache.get('846459783674593371');

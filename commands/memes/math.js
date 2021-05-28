@@ -1,4 +1,4 @@
-const { memes } = require('../../json/maths.json');
+const { math } = require('../../json/memes.json');
 const { MessageEmbed } = require('discord.js');
 
 function random(min, max) {
@@ -12,7 +12,7 @@ module.exports.run = (client, message, args) => {
     .setColor('#FE2EE4')
     .setTitle('MATH MEME GENERATOR')
     .setTimestamp()
-    .setImage(memes[random(0, memes.length)].url);
+    .setImage(math[random(0, math.length)].url);
     message.channel.send(embed);
 }
 
