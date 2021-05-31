@@ -62,6 +62,8 @@ embedPLATFORM = () => {
 
 module.exports = (client) => {
 
+	console.log(memesList)
+
 	console.log(`${memesList.length} memes chargés !`);
 
 	const guild = client.guilds.cache.get('825753614898167848');
@@ -158,7 +160,7 @@ module.exports = (client) => {
 		.setColor('#FE2EE4')
 		.setTitle('RANDOM MEME GENERATOR')
 		.setTimestamp()
-		.setImage(memes[Math.floor(Math.random() * memes.length)]);
+		.setImage(memesList[Math.floor(Math.random() * memesList.length)]);
 		channel.send(embed);
 	}, memeInterval);
 
