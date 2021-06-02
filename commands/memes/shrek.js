@@ -1,11 +1,6 @@
 const { shrek } = require('../../json/memes.json');
 const { MessageEmbed } = require('discord.js');
-
-function random(min, max) {
-	min = Math.ceil(min);
-	max = Math.floor(max);
-	return Math.floor(Math.random() * (max - min)) + min;
-}
+const { random } = require('../../exports');
 
 module.exports.run = (client, message, args) => {
 	const embed = new MessageEmbed()

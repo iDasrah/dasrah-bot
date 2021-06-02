@@ -65,8 +65,6 @@ embedPLATFORM = () => {
 };
 
 module.exports = (client) => {
-	console.log(memesList);
-
 	console.log(`${memesList.length} memes chargés !`);
 
 	const guild = client.guilds.cache.get('825753614898167848');

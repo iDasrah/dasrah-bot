@@ -3,12 +3,7 @@ const { MessageEmbed } = require('discord.js');
 const { bot_messages } = require('../../json/config.json');
 const editJsonFile = require('edit-json-file');
 const { isURL } = require('validator');
-
-function random(min, max) {
-	min = Math.ceil(min);
-	max = Math.floor(max);
-	return Math.floor(Math.random() * (max - min)) + min;
-}
+const { random } = require('../../exports');
 
 function getFromType(device, type) {
 	device = device === 'desktop' ? desktop : mobile;
