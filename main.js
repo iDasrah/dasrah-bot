@@ -4,6 +4,7 @@
 const { Client, Collection, MessageEmbed } = require('discord.js');
 const { prefix, bot_messages, bot_info, roles, intervalMeme } = require('./json/config.json');
 const { readdirSync } = require('fs');
+const token = process.env.token;
 
 const client = new Client();
 
@@ -39,4 +40,4 @@ const loadEvents = (dir = './events/') => {
 loadCommands();
 loadEvents();
 
-client.login(process.env.token);
+client.login(token);
