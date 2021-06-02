@@ -1,5 +1,5 @@
 module.exports.run = (client, message, args) => {
-	message.channel.send("Pong!");
+	message.channel.send('Pong!');
 };
 
 module.exports.help = {
@@ -8,5 +8,5 @@ module.exports.help = {
 	args: [false, [0, '']],
 	category: 'general',
 	usage: '',
-	aliases: []
+	aliases: [],
 };
