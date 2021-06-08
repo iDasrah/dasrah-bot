@@ -24,10 +24,13 @@
 		"no-user-tagged": "vous devez identifier un membre !",
 		"cooldown": "Cooldown activé pour cette commande ! Veuillez attendre ",
 		"help-invalid-command": "je ne trouve pas d'informations sur cette commande...",
-		"user-not-found": "ce membre n'existe pas."
+		"user-not-found": "ce membre n'existe pas.",
+		"no-search": "veuillez me donner un url ou des mots clés.",
+		"no-video-found": "aucune vidéo n'a été trouvée avec cette recherche.",
+		"couldnt-connect": "je n'ai pas pu me connecter dans le salon vocal."
 	},
 	"roles": {
-		"on-join": "Membre"
+		"on-join": "membre"
 	},
 	"bot_info": {
 		"name": "Sashaa",
