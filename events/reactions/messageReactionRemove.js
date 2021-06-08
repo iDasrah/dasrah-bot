@@ -19,6 +19,13 @@ module.exports = (client, messageReaction, user) => {
 	const nswitch = rolesCache.get('846432745453387776');
 	const windows = rolesCache.get('846432682246144082');
 	const xbox = rolesCache.get('846432780253396994');
+	const developer = rolesCache.get('851725079158849546');
+	const beatmaker = rolesCache.get('851725252375216128');
+	const videogames = rolesCache.get('851725348440768542');
+	const anime = rolesCache.get('851725422067580929');
+	const rocketleague = rolesCache.get('846361799606796288');
+	const minecraft = rolesCache.get('851743797776089109');
+	const overwatch = rolesCache.get('851743893548564490');
 
 	if (member.user.bot) return;
 	if (
@@ -37,6 +44,13 @@ module.exports = (client, messageReaction, user) => {
 			'windows_10',
 			'switch',
 			'xbox',
+			'developer',
+			'flstudio',
+			'zerotwo',
+			'controller',
+			'sword',
+			'rocketleague',
+			'overwatch',
 		].includes(emoji) &&
 		message.channel.id === channel.id
 	) {
@@ -123,6 +137,48 @@ module.exports = (client, messageReaction, user) => {
 				member.roles.remove(nswitch);
 				message.channel
 					.send(`${member}, vous n'avez plus le rôle ${nswitch.toString()}.`)
+					.then((msg) => msg.delete({ timeout: 3000 }));
+				break;
+			case 'developer':
+				member.roles.remove(developer);
+				message.channel
+					.send(`${member}, vous n'avez plus le rôle ${developer.toString()}.`)
+					.then((msg) => msg.delete({ timeout: 3000 }));
+				break;
+			case 'flstudio':
+				member.roles.remove(beatmaker);
+				message.channel
+					.send(`${member}, vous n'avez plus le rôle ${beatmaker.toString()}.`)
+					.then((msg) => msg.delete({ timeout: 3000 }));
+				break;
+			case 'zerotwo':
+				member.roles.remove(anime);
+				message.channel
+					.send(`${member}, vous n'avez plus le rôle ${anime.toString()}.`)
+					.then((msg) => msg.delete({ timeout: 3000 }));
+				break;
+			case 'controller':
+				member.roles.remove(videogames);
+				message.channel
+					.send(`${member}, vous n'avez plus le rôle ${videogames.toString()}.`)
+					.then((msg) => msg.delete({ timeout: 3000 }));
+				break;
+			case 'sword':
+				member.roles.remove(minecraft);
+				message.channel
+					.send(`${member}, vous n'avez plus le rôle ${minecraft.toString()}.`)
+					.then((msg) => msg.delete({ timeout: 3000 }));
+				break;
+			case 'rocketleague':
+				member.roles.remove(rocketleague);
+				message.channel
+					.send(`${member}, vous n'avez plus le rôle ${rocketleague.toString()}.`)
+					.then((msg) => msg.delete({ timeout: 3000 }));
+				break;
+			case 'overwatch':
+				member.roles.remove(overwatch);
+				message.channel
+					.send(`${member}, vous n'avez plus le rôle ${overwatch.toString()}.`)
 					.then((msg) => msg.delete({ timeout: 3000 }));
 				break;
 		}

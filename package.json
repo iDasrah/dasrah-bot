@@ -7,11 +7,15 @@
 	"author": "dasrah",
 	"license": "ISC",
 	"dependencies": {
+		"@discordjs/opus": "^0.5.0",
 		"discord.js": "^12.5.1",
 		"edit-json-file": "^1.6.0",
+		"ffmpeg-static": "^4.3.0",
 		"fs": "*",
 		"nodemon": "^2.0.7",
-		"validator": "^13.6.0"
+		"validator": "^13.6.0",
+		"yt-search": "^2.8.0",
+		"ytdl-core": "^4.8.2"
 	},
 	"engines": {
 		"node": "14.x",

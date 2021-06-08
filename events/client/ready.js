@@ -35,7 +35,7 @@ embedRL = () => {
 embedSEX = () => {
 	const embed = new MessageEmbed().setTimestamp();
 	embed
-		.setTitle('ROLES SEXE')
+		.setTitle('SEXE')
 		.setDescription('Cliquez sur une réaction pour vous attribuer un rôle.')
 		.addField(
 			'Rôles disponibles',
@@ -49,7 +49,7 @@ embedSEX = () => {
 embedPLATFORM = () => {
 	const embed = new MessageEmbed().setTimestamp();
 	embed
-		.setTitle('ROLES PLATEFORME')
+		.setTitle('PLATEFORME')
 		.setDescription('Cliquez sur une réaction pour vous attribuer un rôle.')
 		.addField(
 			'Rôles disponibles',
@@ -59,6 +59,41 @@ embedPLATFORM = () => {
       ${windowsEmote} : ${windows.toString()}
       ${xboxEmote} : ${xbox.toString()}
       `
+		);
+
+	return embed;
+};
+
+embedHOBBY = () => {
+	const embed = new MessageEmbed().setTimestamp();
+	embed
+		.setTitle("CENTRES D'INTERET")
+		.setDescription('Cliquez sur une réaction pour vous attribuer un rôle.')
+		.addField(
+			'Rôles disponibles',
+			`
+		${programmationEmote} : ${developer.toString()}
+		${beatmakingEmote} : ${beatmaker.toString()}
+		${videogamesEmote} : ${videogames.toString()}
+		${animeEmote} : ${anime.toString()}
+		`
+		);
+
+	return embed;
+};
+
+embedGAMES = () => {
+	const embed = new MessageEmbed().setTimestamp();
+	embed
+		.setTitle('JEUX')
+		.setDescription('Cliquez sur une réaction pour vous attribuer un rôle.')
+		.addField(
+			'Rôles disponibles',
+			`
+			${minecraftEmote} : ${minecraft.toString()}
+			${rocketleagueEmote} : ${rocketleague.toString()}
+			${overwatchEmote} : ${overwatch.toString()}
+			`
 		);
 
 	return embed;
@@ -91,6 +126,17 @@ module.exports = (client) => {
 			(windows = rolesCache.get('846432682246144082')),
 			(xbox = rolesCache.get('846432780253396994')),
 		],
+		[
+			(developer = rolesCache.get('851725079158849546')),
+			(beatmaker = rolesCache.get('851725252375216128')),
+			(videogames = rolesCache.get('851725348440768542')),
+			(anime = rolesCache.get('851725422067580929')),
+		],
+		[
+			(minecraft = rolesCache.get('851743797776089109')),
+			(rocketleague = rolesCache.get('846361799606796288')),
+			(overwatch = rolesCache.get('851743893548564490')),
+		],
 	];
 
 	const emotes = [
@@ -114,9 +160,20 @@ module.exports = (client) => {
 			(windowsEmote = emotesCache.get('847098235037810698')),
 			(xboxEmote = emotesCache.get('847098234560315402')),
 		],
+		[
+			(programmationEmote = emotesCache.get('851731203391488021')),
+			(beatmakingEmote = emotesCache.get('851732564549042187')),
+			(videogamesEmote = emotesCache.get('851733034571005953')),
+			(animeEmote = emotesCache.get('851733408970702858')),
+		],
+		[
+			(minecraftEmote = emotesCache.get('851745982534123540')),
+			(rocketleagueEmote = emotesCache.get('851745982629675028')),
+			(overwatchEmote = emotesCache.get('851745983175327744')),
+		],
 	];
 
-	const embeds = [embedRL(), embedSEX(), embedPLATFORM()];
+	const embeds = [embedRL(), embedSEX(), embedPLATFORM(), embedHOBBY(), embedGAMES()];
 
 	const clearChannel = async (channel) =>
 		await channel.messages.fetch({ limit: 100 }).then((messages) => {

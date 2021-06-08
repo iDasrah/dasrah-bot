@@ -19,6 +19,15 @@ module.exports = (client, messageReaction, user) => {
 	const nswitch = rolesCache.get('846432745453387776');
 	const windows = rolesCache.get('846432682246144082');
 	const xbox = rolesCache.get('846432780253396994');
+	const developer = rolesCache.get('851725079158849546');
+	const beatmaker = rolesCache.get('851725252375216128');
+	const videogames = rolesCache.get('851725348440768542');
+	const anime = rolesCache.get('851725422067580929');
+	const rocketleague = rolesCache.get('846361799606796288');
+	const minecraft = rolesCache.get('851743797776089109');
+	const overwatch = rolesCache.get('851743893548564490');
+	const headerprofile = rolesCache.get('851718162738315295');
+	const footerprofile = rolesCache.get('851718367050989609');
 
 	if (member.user.bot) return;
 	if (
@@ -37,6 +46,13 @@ module.exports = (client, messageReaction, user) => {
 			'windows_10',
 			'switch',
 			'xbox',
+			'developer',
+			'flstudio',
+			'zerotwo',
+			'controller',
+			'rocketleague',
+			'overwatch',
+			'sword',
 		].includes(emoji) &&
 		message.channel.id === channel.id
 	) {
@@ -125,6 +141,55 @@ module.exports = (client, messageReaction, user) => {
 					.send(`${member}, vous avez reçu le rôle ${nswitch.toString()}.`)
 					.then((msg) => msg.delete({ timeout: 3000 }));
 				break;
+			case 'developer':
+				member.roles.add(developer);
+				message.channel
+					.send(`${member}, vous avez reçu le rôle ${developer.toString()}.`)
+					.then((msg) => msg.delete({ timeout: 3000 }));
+				break;
+			case 'flstudio':
+				member.roles.add(beatmaker);
+				message.channel
+					.send(`${member}, vous avez reçu le rôle ${beatmaker.toString()}.`)
+					.then((msg) => msg.delete({ timeout: 3000 }));
+				break;
+			case 'zerotwo':
+				member.roles.add(anime);
+				message.channel
+					.send(`${member}, vous avez reçu le rôle ${anime.toString()}.`)
+					.then((msg) => msg.delete({ timeout: 3000 }));
+				break;
+			case 'controller':
+				member.roles.add(videogames);
+				message.channel
+					.send(`${member}, vous avez reçu le rôle ${videogames.toString()}.`)
+					.then((msg) => msg.delete({ timeout: 3000 }));
+				break;
+			case 'sword':
+				member.roles.add(minecraft);
+				message.channel
+					.send(`${member}, vous avez reçu le rôle ${minecraft.toString()}.`)
+					.then((msg) => msg.delete({ timeout: 3000 }));
+				break;
+			case 'rocketleague':
+				member.roles.add(rocketleague);
+				message.channel
+					.send(`${member}, vous avez reçu le rôle ${rocketleague.toString()}.`)
+					.then((msg) => msg.delete({ timeout: 3000 }));
+				break;
+			case 'overwatch':
+				member.roles.add(overwatch);
+				message.channel
+					.send(`${member}, vous avez reçu le rôle ${overwatch.toString()}.`)
+					.then((msg) => msg.delete({ timeout: 3000 }));
+				break;
 		}
+	}
+
+	if (
+		!(member.roles.cache.has('851718162738315295') && member.roles.cache.has('851718367050989609'))
+	) {
+		member.roles.add(headerprofile);
+		member.roles.add(footerprofile);
 	}
 };
