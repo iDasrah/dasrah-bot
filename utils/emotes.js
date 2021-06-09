@@ -36,3 +36,27 @@ module.exports.emotes = (client) => {
 		],
 	];
 };
+
+exports.emoteList = [
+	'bronze1',
+	'silv1',
+	'gold1',
+	'plat1',
+	'diam1',
+	'c1',
+	'gc1',
+	'ssl',
+	'sign_male',
+	'sign_female',
+	'playstation',
+	'windows_10',
+	'switch',
+	'xbox',
+	'developer',
+	'flstudio',
+	'zerotwo',
+	'controller',
+	'rocketleague',
+	'overwatch',
+	'sword',
+];

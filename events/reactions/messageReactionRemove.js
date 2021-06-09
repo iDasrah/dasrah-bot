@@ -1,3 +1,4 @@
+const { emoteList } = require('../../utils/emotes');
 const { roles } = require('../../utils/roles');
 
 module.exports = (client, messageReaction, user) => {
@@ -10,30 +11,7 @@ module.exports = (client, messageReaction, user) => {
 	const roleList = roles(client);
 
 	if (member.user.bot) return;
-	if (
-		[
-			'bronze1',
-			'silv1',
-			'gold1',
-			'plat1',
-			'diam1',
-			'c1',
-			'gc1',
-			'ssl',
-			'sign_male',
-			'sign_female',
-			'playstation',
-			'windows_10',
-			'switch',
-			'xbox',
-			'developer',
-			'flstudio',
-			'zerotwo',
-			'controller',
-			'sword',
-			'rocketleague',
-			'overwatch',
-		].includes(emoji) &&
+	if (emoteList.includes(emoji) &&
 		message.channel.id === channel.id
 	) {
 		switch (emoji) {
