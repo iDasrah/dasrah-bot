@@ -3,9 +3,7 @@
 	"version": "1.0.0",
 	"description": "",
 	"main": "main.js",
-	"scripts": {
-		"start": "pm2-runtime start ecosystem.config.js --env production"
-	},
+	"scripts": {},
 	"author": "dasrah",
 	"license": "ISC",
 	"dependencies": {
