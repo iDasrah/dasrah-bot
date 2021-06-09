@@ -1,10 +1,6 @@
-const { bot_info, prefix } = require('../../json/config.json');
 const { MessageEmbed } = require('discord.js');
 const memes = require('../../json/memes.json');
 const { loadBar, clearChannel } = require('../../utils/functions');
-const { loadEmbeds } = require('../../utils/embeds');
-const { roles } = require('../../utils/roles');
-const { emotes } = require('../../utils/emotes');
 const { GUILD, CHANNELS } = require('../../utils/consts');
 
 let memesList = [];
@@ -16,34 +12,17 @@ for (const category in memes) {
 	}
 }
 
-module.exports = (client) => {
+module.exports = async (client) => {
 	console.log(`${memesList.length} memes chargés !`);
 
 	const guild = client.guilds.cache.get(GUILD.ID);
 	const roleChannel = guild.channels.cache.get(CHANNELS.ROLECHANNEL);
 	const roadToChannel = guild.channels.cache.get(CHANNELS.ROADTOCHANNEL);
 
-	// init embeds and roles/emotes
-	const embeds = loadEmbeds(client);
-	const roleList = roles(client);
-	const emoteList = emotes(client);
+	const settings = await client.getGuild(guild);
 
-	clearChannel(roleChannel);
-
-	// send roles messages + reacts
-	for (let role = 0; role < roleList.length; role++) {
-		roleChannel
-			.send(embeds[role])
-			.then(async (msg) => {
-				for (let emote = 0; emote < emoteList[role].length; emote++) {
-					const thisEmote = emoteList[role][emote];
-					await msg.react(thisEmote.toString());
-				}
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	}
+	// load all messages of role channel
+	roleChannel.messages.fetch();
 
 	// road to bar
 	clearChannel(roadToChannel);
@@ -51,12 +30,12 @@ module.exports = (client) => {
 
 	// confirmations
 	console.log('Messages de rôles envoyés !');
-	console.log(`${bot_info.name}: Je suis prête !`);
+	console.log(`${client.config.bot_info.name}: Je suis prête !`);
 
 	// status
 	client.user.setPresence({
 		activity: {
-			name: `${prefix}help pour de l'aide.`,
+			name: `${settings.prefix}help pour de l'aide.`,
 		},
 	});
 

@@ -1,5 +1,5 @@
 const { emoteList } = require('../../utils/emotes');
-const { roles } = require('../../utils/roles');
+const { roles, profile } = require('../../utils/roles');
 
 module.exports = (client, messageReaction, user) => {
 	const message = messageReaction.message;
@@ -8,6 +8,7 @@ module.exports = (client, messageReaction, user) => {
 	const channel = message.guild.channels.cache.find((c) => c.id === '846459783674593371');
 
 	const roleList = [].concat.apply([], roles(client));
+	const profileRoles = profile(client);
 
 	if (member.user.bot) return;
 	if (emoteList.includes(emoji) && message.channel.id === channel.id) {
@@ -15,9 +16,6 @@ module.exports = (client, messageReaction, user) => {
 			if (emote === emoji) {
 				const role = roleList[emoteList.indexOf(emote)];
 				member.roles.add(role);
-				message.channel
-					.send(`${member}, vous avez reçu le rôle ${role.toString()}.`)
-					.then((msg) => msg.delete({ timeout: 3000 }));
 				break;
 			}
 		}
@@ -26,7 +24,7 @@ module.exports = (client, messageReaction, user) => {
 	if (
 		!(member.roles.cache.has('851718162738315295') && member.roles.cache.has('851718367050989609'))
 	) {
-		member.roles.add(headerprofile);
-		member.roles.add(footerprofile);
+		member.roles.add(profileRoles[0]);
+		member.roles.add(profileRoles[1]);
 	}
 };

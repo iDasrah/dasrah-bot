@@ -1,13 +1,18 @@
 'use strict';
 
+if (process.env.NODE_ENV !== 'production') {
+	require('dotenv').config();
+}
+
 // imports
 const { Client, Collection } = require('discord.js');
-const token = process.env.token || 'ODI1NzU0OTEwMDExODE3OTg0.YGCiMA.WV84IEyZnOSDtZn4Mqqk_h6Fk1g';
+const token = process.env.token;
 const { loadCommands, loadEvents } = require('./utils/loader');
 
 const client = new Client();
-// require('./utils/functions')(client);
+require('./utils/dbfunctions')(client);
 client.mongoose = require('./utils/mongoose');
+client.config = require('./json/config.json');
 
 // collections
 ['commands'].forEach((collection) => (client[collection] = new Collection()));

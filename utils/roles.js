@@ -33,3 +33,13 @@ module.exports.roles = (client) => {
 		],
 	];
 };
+
+module.exports.profile = (client) => {
+	const guild = client.guilds.cache.get('825753614898167848');
+	const rolesCache = guild.roles.cache;
+
+	return [
+		(headerprofile = rolesCache.get('851718162738315295')),
+		(footerprofile = rolesCache.get('851718367050989609')),
+	];
+};

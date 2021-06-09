@@ -1,4 +1,3 @@
-const { createCanvas, loadImage } = require('canvas');
 const { ROLES, CHANNELS, GUILD } = require('../../utils/consts');
 const { clearChannel, loadBar } = require('../../utils/functions');
 
@@ -8,7 +7,6 @@ module.exports = (client, member) => {
 	const guild = client.guilds.cache.get(GUILD.ID);
 	const roadToChannel = guild.channels.cache.get(CHANNELS.ROADTOCHANNEL);
 	const discussChannel = guild.channels.cache.get(CHANNELS.DISCUSSCHANNEL);
-	const currentRoadTo = 50;
 
 	welcomeChannel.send(`${member}, salut mec !`);
 	member.roles.add(role);

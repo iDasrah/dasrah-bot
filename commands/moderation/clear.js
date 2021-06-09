@@ -1,4 +1,3 @@
-const { bot_messages } = require('../../json/config.json');
 const { MESSAGES } = require('../../utils/consts');
 
 module.exports.run = async (client, message, args) => {
@@ -6,9 +5,9 @@ module.exports.run = async (client, message, args) => {
 	const nbrMsg = args[0];
 
 	if (nbrMsg) {
-		if (isNaN(nbrMsg)) return message.reply(bot_messages['NaN-arg-error']);
-		else if (nbrMsg > 100) return message.reply(bot_messages['too-much-clear-error']);
-		else if (nbrMsg < 1) return message.reply(bot_messages['not-enough-clear-error']);
+		if (isNaN(nbrMsg)) return message.reply(client.config.bot_messages['NaN-arg-error']);
+		else if (nbrMsg > 100) return message.reply(client.config.bot_messages['too-much-clear-error']);
+		else if (nbrMsg < 1) return message.reply(client.config.bot_messages['not-enough-clear-error']);
 	}
 
 	if (!args.length) {

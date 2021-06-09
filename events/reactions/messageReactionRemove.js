@@ -15,9 +15,6 @@ module.exports = (client, messageReaction, user) => {
 			if (emote === emoji) {
 				const role = roleList[emoteList.indexOf(emote)];
 				member.roles.remove(role);
-				message.channel
-					.send(`${member}, vous n'avez plus le rôle ${role.toString()}.`)
-					.then((msg) => msg.delete({ timeout: 3000 }));
 				break;
 			}
 		}

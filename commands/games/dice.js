@@ -1,10 +1,9 @@
 const { MessageEmbed, MessageAttachment } = require('discord.js');
 const dice = new MessageAttachment('./assets/img/dice.png');
-const { bot_messages, prefix } = require('../../json/config.json');
 const { MESSAGES } = require('../../utils/consts');
 const number = () => Math.floor(Math.random() * 6 + 1);
 
-module.exports.run = (client, message, args) => {
+module.exports.run = (client, message, args, settings) => {
 	const action = args[0];
 
 	const embed = new MessageEmbed()
@@ -29,7 +28,7 @@ module.exports.run = (client, message, args) => {
 		else embed.setFooter(`VICTOIRE DE ${client.user.username}`);
 	} else if (action === 'duel') {
 		const taggedUser = message.mentions.users.first();
-		if (!taggedUser) return message.reply(bot_messages['no-user-tagged']);
+		if (!taggedUser) return message.reply(client.config.bot_messages['no-user-tagged']);
 		const number1 = number();
 		const number2 = number();
 		embed
@@ -43,7 +42,7 @@ module.exports.run = (client, message, args) => {
 		else embed.setFooter(`VICTOIRE DE ${taggedUser.username}`);
 	} else
 		return message.reply(
-			`${bot_messages['wrong-argument-error']}\r\n\`${prefix}${exports.help.name} ${exports.help.usage}\``
+			`${client.config.bot_messages['wrong-argument-error']}\r\n\`${settings.prefix}${exports.help.name} ${exports.help.usage}\``
 		);
 	message.channel.send(embed);
 };

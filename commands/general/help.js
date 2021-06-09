@@ -1,10 +1,9 @@
 const { MessageEmbed } = require('discord.js');
-const { prefix, bot_messages } = require('../../json/config.json');
 const { readdirSync } = require('fs');
 const { MESSAGES } = require('../../utils/consts');
 const categoryList = readdirSync('./commands');
 
-module.exports.run = (client, message, args) => {
+module.exports.run = (client, message, args, settings) => {
 	const commandArg = args[0];
 
 	if (!args.length) {
@@ -12,7 +11,7 @@ module.exports.run = (client, message, args) => {
 			.setColor('#36394F')
 			.addField(
 				'HELP',
-				`Liste des commandes\r\nPour plus d'infos sur une commande, tapez ${prefix}${exports.help.name} [commande]`
+				`Liste des commandes\r\nPour plus d'infos sur une commande, tapez ${client.config.prefix}${exports.help.name} [commande]`
 			);
 
 		for (const category of categoryList) {
@@ -27,12 +26,12 @@ module.exports.run = (client, message, args) => {
 		return message.channel.send(embed);
 	} else {
 		const command = client.commands.get(commandArg);
-		if (!command) return message.reply(bot_messages['help-invalid-command']);
+		if (!command) return message.reply(client.config.bot_messages['help-invalid-command']);
 		const embed = new MessageEmbed()
 			.setColor('#36394F')
 			.setTitle(`HELP: ${command.help.name}`)
 			.addField(`Description`, `${command.help.description}`)
-			.addField(`Utilisation`, `${prefix}${command.help.name} ${command.help.usage}`);
+			.addField(`Utilisation`, `${client.config.prefix}${command.help.name} ${command.help.usage}`);
 
 		if (command.help.aliases.length)
 			embed.addField('Aliases', `${command.help.aliases.join(', ')}`, true);

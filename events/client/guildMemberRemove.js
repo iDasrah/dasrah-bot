@@ -1,4 +1,3 @@
-const { createCanvas, loadImage } = require('canvas');
 const { loadBar, clearChannel } = require('../../utils/functions');
 const { GUILD, CHANNELS } = require('../../utils/consts');
 

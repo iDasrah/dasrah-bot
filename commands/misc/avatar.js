@@ -1,6 +1,5 @@
 const { MessageEmbed } = require('discord.js');
 const { messages } = require('../../json/avatar.json');
-const { bot_messages } = require('../../json/config.json');
 const { random } = require('../../utils/functions');
 const { MESSAGES } = require('../../utils/consts');
 
@@ -16,7 +15,7 @@ module.exports.run = (client, message, args) => {
 		message.reply(embed);
 	} else {
 		const taggedUser = message.mentions.users.first();
-		if (!taggedUser) return message.reply(bot_messages['no-user-tagged']);
+		if (!taggedUser) return message.reply(client.config.bot_messages['no-user-tagged']);
 		embed.setTitle(`AVATAR DE ${taggedUser.username.toUpperCase()}`);
 		embed.setImage(taggedUser.displayAvatarURL({ dynamic: true, size: 4096 }));
 		message.reply(embed);

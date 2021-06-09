@@ -1,5 +1,4 @@
 const { MessageEmbed } = require('discord.js');
-const { bot_messages } = require('../../json/config.json');
 const { MESSAGES } = require('../../utils/consts');
 
 module.exports.run = (client, message, args) => {
@@ -14,10 +13,10 @@ module.exports.run = (client, message, args) => {
 		.addField('Raison', reason)
 		.setTimestamp();
 
-	if (!taggedUser) return message.reply(bot_messages['no-user-tagged']);
+	if (!taggedUser) return message.reply(client.config.bot_messages['no-user-tagged']);
 	taggedUser
 		? message.guild.member(taggedUser).ban({ reason: reason })
-		: message.reply(bot_messages['user-not-found']);
+		: message.reply(client.config.bot_messages['user-not-found']);
 
 	return client.channels.cache.get('846288755480592435').send(embed);
 };
