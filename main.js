@@ -6,7 +6,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 // imports
 const { Client, Collection } = require('discord.js');
-const token = process.env.token;
+const token = process.env.token; // token
 const { loadCommands, loadEvents } = require('./utils/loader');
 
 const client = new Client();

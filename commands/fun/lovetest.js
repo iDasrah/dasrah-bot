@@ -1,4 +1,3 @@
-const { MessageEmbed } = require('discord.js');
 const { random, loadLoveTest } = require('../../utils/functions');
 const { MESSAGES } = require('../../utils/consts');
 
