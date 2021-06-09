@@ -1,5 +1,6 @@
 const { createCanvas, loadImage } = require('canvas');
 const { ROLES } = require('../../utils/consts');
+const { clearChannel, sendBar } = require('../../utils/functions');
 
 module.exports = (client, member) => {
 	const welcomeChannel = member.guild.channels.cache.get('840203319254188063');

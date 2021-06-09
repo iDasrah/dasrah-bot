@@ -33,7 +33,7 @@
 		"name": "Sashaa",
 		"version": 1.3
 	},
-	"database_connect": "mongodb://localhost:27017/app",
+	"database_connect": "mongodb+srv://root:admin@cluster0.yjwsy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
 	"defaults": {
 		"prefix": "-"
 	}
