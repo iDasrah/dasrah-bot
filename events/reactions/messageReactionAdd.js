@@ -1,33 +1,12 @@
+const { roles } = require('../../utils/roles');
+
 module.exports = (client, messageReaction, user) => {
 	const message = messageReaction.message;
 	const member = message.guild.members.cache.get(user.id);
 	const emoji = messageReaction.emoji.name;
 	const channel = message.guild.channels.cache.find((c) => c.id === '846459783674593371');
-	const rolesCache = message.guild.roles.cache;
 
-	const bronze = rolesCache.get('846328120289525781');
-	const silver = rolesCache.get('846328390147112981');
-	const gold = rolesCache.get('846328466509135873');
-	const platinum = rolesCache.get('846328611014705162');
-	const diamond = rolesCache.get('846328675430563870');
-	const champion = rolesCache.get('846328670485217281');
-	const grandChampion = rolesCache.get('846328873892839456');
-	const ssl = rolesCache.get('846329006240563200');
-	const man = rolesCache.get('844710960496377864');
-	const woman = rolesCache.get('844679115189125122');
-	const playstation = rolesCache.get('846432721139793960');
-	const nswitch = rolesCache.get('846432745453387776');
-	const windows = rolesCache.get('846432682246144082');
-	const xbox = rolesCache.get('846432780253396994');
-	const developer = rolesCache.get('851725079158849546');
-	const beatmaker = rolesCache.get('851725252375216128');
-	const videogames = rolesCache.get('851725348440768542');
-	const anime = rolesCache.get('851725422067580929');
-	const rocketleague = rolesCache.get('846361799606796288');
-	const minecraft = rolesCache.get('851743797776089109');
-	const overwatch = rolesCache.get('851743893548564490');
-	const headerprofile = rolesCache.get('851718162738315295');
-	const footerprofile = rolesCache.get('851718367050989609');
+	const roleList = roles(client);
 
 	if (member.user.bot) return;
 	if (

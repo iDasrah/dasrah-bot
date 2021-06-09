@@ -3,64 +3,15 @@ const { MessageEmbed } = require('discord.js');
 const { bot_messages } = require('../../json/config.json');
 const editJsonFile = require('edit-json-file');
 const { isURL } = require('validator');
-const { random } = require('../../utils/functions');
+const {
+	random,
+	getFromType,
+	sendWallpaper,
+	sendWallpaperByDevice,
+	sendWallpaperByType,
+	addToList,
+} = require('../../utils/functions');
 const { MESSAGES } = require('../../utils/consts');
-
-function getFromType(device, type) {
-	device = device === 'desktop' ? desktop : mobile;
-	urls = [];
-
-	device.forEach((wallpaper) => {
-		if (wallpaper.type === type) {
-			urls.push(wallpaper.url);
-		}
-	});
-
-	return urls;
-}
-
-function sendWallpaper(message) {
-	choice = random(0, 2);
-
-	device = choice === 0 ? mobile : desktop;
-
-	sendWallpaperByDevice(message, device);
-}
-
-function sendWallpaperByDevice(message, device) {
-	const embed = new MessageEmbed()
-		.setColor('#F7B2EE')
-		.setDescription(descriptions[random(0, descriptions.length)])
-		.setTimestamp();
-	image = device[random(0, device.length)].url;
-
-	device = device === desktop ? 'desktop' : 'mobile';
-
-	if (device.length <= 1) return message.reply(bot_messages['no-urls-wallpaper']);
-
-	embed.setTitle(`${device.toUpperCase()} WALLPAPER GENERATOR`).setImage(image);
-	message.channel.send(embed);
-}
-
-function sendWallpaperByType(message, device, urls) {
-	const embed = new MessageEmbed()
-		.setColor('#F7B2EE')
-		.setDescription(descriptions[random(0, descriptions.length)])
-		.setTimestamp();
-	image = urls[random(0, urls.length)];
-
-	if (urls.length < 1) return message.reply(bot_messages['no-urls-wallpaper']);
-
-	embed.setTitle(`${device.toUpperCase()} WALLPAPER GENERATOR`).setImage(image);
-	message.channel.send(embed);
-}
-
-function addToList(device, type, url) {
-	const file = editJsonFile(`${__dirname}/wallpapers.json`);
-
-	file.append(device, { type: type, url: url });
-	file.save();
-}
 
 module.exports.run = (client, message, args) => {
 	if (!args.length) {

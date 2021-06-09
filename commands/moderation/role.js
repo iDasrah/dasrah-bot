@@ -1,25 +1,6 @@
 const { bot_messages } = require('../../json/config.json');
 const { MESSAGES } = require('../../utils/consts');
-
-function addRole(taggedMember, role, message) {
-	if (role) {
-		if (taggedMember.roles.cache.has(role.id)) return message.reply(bot_messages['has-role']);
-		taggedMember.roles
-			.add(role)
-			.then(() => message.channel.send(`Vous avez donné le rôle ${role} à ${taggedMember.user}`));
-	} else return message.reply(bot_messages['role-doesnt-exist']);
-}
-
-function removeRole(taggedMember, role, message) {
-	if (role) {
-		if (!taggedMember.roles.cache.has(role.id)) return message.reply(bot_messages['hasnt-role']);
-		taggedMember.roles
-			.remove(role)
-			.then(() =>
-				message.channel.send(`Vous avez supprimé le rôle ${role} de ${taggedMember.user}`)
-			);
-	} else return message.reply(bot_messages['role-doesnt-exist']);
-}
+const { addRole, removeRole } = require('../../utils/functions');
 
 module.exports.run = (client, message, args) => {
 	const action = args[0];
@@ -40,14 +21,12 @@ module.exports.run = (client, message, args) => {
 		args = args.slice(2);
 		args.forEach((arg) => {
 			const role = message.guild.roles.cache.find((role) => role.name === arg.toString());
-			console.log(role);
 			addRole(taggedMember, role, message);
 		});
 	} else if (action === 'removes') {
 		args = args.slice(2);
 		args.forEach((arg) => {
 			const role = message.guild.roles.cache.find((role) => role.name === arg.toString());
-			console.log(role);
 			removeRole(taggedMember, role, message);
 		});
 	}

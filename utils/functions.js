@@ -1,5 +1,5 @@
 const { createCanvas, loadImage } = require('canvas');
-const { MessageAttachment } = require('discord.js');
+const { MessageAttachment, MessageEmbed } = require('discord.js');
 const currentRoadTo = 50;
 
 function random(min, max) {
@@ -48,8 +48,91 @@ async function sendBar(channel, guild) {
 	channel.send(attachment);
 }
 
+function getFromType(device, type) {
+	device = device === 'desktop' ? desktop : mobile;
+	urls = [];
+
+	device.forEach((wallpaper) => {
+		if (wallpaper.type === type) {
+			urls.push(wallpaper.url);
+		}
+	});
+
+	return urls;
+}
+
+function sendWallpaper(message) {
+	choice = random(0, 2);
+
+	device = choice === 0 ? mobile : desktop;
+
+	sendWallpaperByDevice(message, device);
+}
+
+function sendWallpaperByDevice(message, device) {
+	const embed = new MessageEmbed()
+		.setColor('#F7B2EE')
+		.setDescription(descriptions[random(0, descriptions.length)])
+		.setTimestamp();
+	image = device[random(0, device.length)].url;
+
+	device = device === desktop ? 'desktop' : 'mobile';
+
+	if (device.length <= 1) return message.reply(bot_messages['no-urls-wallpaper']);
+
+	embed.setTitle(`${device.toUpperCase()} WALLPAPER GENERATOR`).setImage(image);
+	message.channel.send(embed);
+}
+
+function sendWallpaperByType(message, device, urls) {
+	const embed = new MessageEmbed()
+		.setColor('#F7B2EE')
+		.setDescription(descriptions[random(0, descriptions.length)])
+		.setTimestamp();
+	image = urls[random(0, urls.length)];
+
+	if (urls.length < 1) return message.reply(bot_messages['no-urls-wallpaper']);
+
+	embed.setTitle(`${device.toUpperCase()} WALLPAPER GENERATOR`).setImage(image);
+	message.channel.send(embed);
+}
+
+function addToList(device, type, url) {
+	const file = editJsonFile(`${__dirname}/wallpapers.json`);
+
+	file.append(device, { type: type, url: url });
+	file.save();
+}
+
+function addRole(taggedMember, role, message) {
+	if (role) {
+		if (taggedMember.roles.cache.has(role.id)) return message.reply(bot_messages['has-role']);
+		taggedMember.roles
+			.add(role)
+			.then(() => message.channel.send(`Vous avez donné le rôle ${role} à ${taggedMember.user}`));
+	} else return message.reply(bot_messages['role-doesnt-exist']);
+}
+
+function removeRole(taggedMember, role, message) {
+	if (role) {
+		if (!taggedMember.roles.cache.has(role.id)) return message.reply(bot_messages['hasnt-role']);
+		taggedMember.roles
+			.remove(role)
+			.then(() =>
+				message.channel.send(`Vous avez supprimé le rôle ${role} de ${taggedMember.user}`)
+			);
+	} else return message.reply(bot_messages['role-doesnt-exist']);
+}
+
 module.exports = {
 	random,
 	sendBar,
 	clearChannel,
+	getFromType,
+	sendWallpaper,
+	sendWallpaperByDevice,
+	sendWallpaperByType,
+	addToList,
+	addRole,
+	removeRole,
 };
