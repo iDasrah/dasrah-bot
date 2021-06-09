@@ -146,6 +146,17 @@ const MESSAGES = {
 				aliases: ['av'],
 			},
 		},
+		ADMIN: {
+			RELOAD: {
+				name: 'reload',
+				description: 'Relancer le bot',
+				args: [false, [0, 'strict']],
+				usage: '',
+				category: 'admin',
+				aliases: ['rl'],
+				permission: 'ADMINISTRATOR',
+			},
+		},
 	},
 };
 
@@ -153,5 +164,22 @@ const ROLES = {
 	ONJOIN: '839420010203447296',
 };
 
+const CHANNELS = {
+	LOGSCHANNEL: '825759707087765504',
+	WELCOMECHANNEL: '840203319254188063',
+	ROADTOCHANNEL: '851794676637630494',
+	DISCUSSCHANNEL: '826673568930594816',
+	QUITCHANNEL: '846288755480592435',
+	ROLECHANNEL: '846459783674593371',
+	MEMESCHANNEL: '845273490764333057',
+};
+
+const GUILD = {
+	ID: '825753614898167848',
+	ROADTO: 50,
+};
+
 exports.MESSAGES = MESSAGES;
 exports.ROLES = ROLES;
+exports.CHANNELS = CHANNELS;
+exports.GUILD = GUILD;

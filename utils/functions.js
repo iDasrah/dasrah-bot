@@ -1,6 +1,6 @@
 const { createCanvas, loadImage } = require('canvas');
 const { MessageAttachment, MessageEmbed } = require('discord.js');
-const currentRoadTo = 50;
+const { GUILD } = require('./consts');
 
 function random(min, max) {
 	min = Math.ceil(min);
@@ -31,18 +31,18 @@ async function sendBar(channel, guild) {
 
 	ctx.fillStyle = '#32ff7e';
 	ctx.globalAlpha = 0.8;
-	ctx.fillRect(101, 134, (100 / currentRoadTo) * guild.memberCount * 3.61, 50);
+	ctx.fillRect(101, 134, (100 / GUILD.ROADTO) * guild.memberCount * 3.61, 50);
 
 	ctx.globalAlpha = 1;
 	ctx.fillStyle = '#fff';
 
 	ctx.font = '40px Arial';
 	ctx.textAlign = 'center';
-	ctx.fillText(`ROAD TO ${currentRoadTo} MEMBRES !`, 281, 60);
+	ctx.fillText(`ROAD TO ${GUILD.ROADTO} MEMBRES !`, 281, 60);
 
 	ctx.font = '20px Arial';
 	ctx.textAlign = 'center';
-	ctx.fillText(`${guild.memberCount} / ${currentRoadTo}`, 281, 166);
+	ctx.fillText(`${guild.memberCount} / ${GUILD.ROADTO}`, 281, 166);
 
 	const attachment = new MessageAttachment(canva.toBuffer(), 'roadto.png');
 	channel.send(attachment);

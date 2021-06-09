@@ -1,14 +1,13 @@
 const { bot_info, prefix } = require('../../json/config.json');
-const { MessageEmbed, MessageAttachment } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 const memes = require('../../json/memes.json');
-const { createCanvas, loadImage } = require('canvas');
 const { sendBar, clearChannel } = require('../../utils/functions');
 const { loadEmbeds } = require('../../utils/embeds');
 const { roles } = require('../../utils/roles');
 const { emotes } = require('../../utils/emotes');
+const { GUILD, CHANNELS } = require('../../utils/consts');
 
 let memesList = [];
-const currentRoadTo = 50;
 
 // chargement de tous les memes dans la liste
 for (const category in memes) {
@@ -20,9 +19,9 @@ for (const category in memes) {
 module.exports = (client) => {
 	console.log(`${memesList.length} memes chargés !`);
 
-	const guild = client.guilds.cache.get('825753614898167848');
-	const roleChannel = guild.channels.cache.get('846459783674593371');
-	const roadToChannel = guild.channels.cache.get('851794676637630494');
+	const guild = client.guilds.cache.get(GUILD.ID);
+	const roleChannel = guild.channels.cache.get(CHANNELS.ROLECHANNEL);
+	const roadToChannel = guild.channels.cache.get(CHANNELS.ROADTOCHANNEL);
 
 	// init embeds and roles/emotes
 	const embeds = loadEmbeds(client);
@@ -33,8 +32,7 @@ module.exports = (client) => {
 
 	// send roles messages + reacts
 	for (let role = 0; role < roleList.length; role++) {
-		client.channels.cache
-			.get('846459783674593371')
+		roleChannel
 			.send(embeds[role])
 			.then(async (msg) => {
 				for (let emote = 0; emote < emoteList[role].length; emote++) {
@@ -65,12 +63,12 @@ module.exports = (client) => {
 	// meme interval
 	client.setInterval(() => {
 		console.log('Sent a meme!');
-		const channel = client.channels.cache.get('845273490764333057');
+		const memesChannel = client.channels.cache.get(CHANNELS.MEMESCHANNEL);
 		const embed = new MessageEmbed()
 			.setColor('#FE2EE4')
 			.setTitle('RANDOM MEME GENERATOR')
 			.setTimestamp()
 			.setImage(memesList[Math.floor(Math.random() * memesList.length)]);
-		channel.send(embed);
+		memesChannel.send(embed);
 	}, 60 * 60 * 1000);
 };

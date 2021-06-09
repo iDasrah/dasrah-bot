@@ -3,6 +3,8 @@ const { bot_messages } = require('../../json/config.json');
 const { MESSAGES } = require('../../utils/consts');
 
 module.exports.run = (client, message, args) => {
+	message.delete();
+
 	const reason = args.splice(1).join(' ') || 'Raison non spécifiée.';
 	const taggedUser = message.mentions.users.first();
 	embed = new MessageEmbed()

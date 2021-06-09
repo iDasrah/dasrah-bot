@@ -1,13 +1,13 @@
 const { createCanvas, loadImage } = require('canvas');
-const { ROLES } = require('../../utils/consts');
+const { ROLES, CHANNELS, GUILD } = require('../../utils/consts');
 const { clearChannel, sendBar } = require('../../utils/functions');
 
 module.exports = (client, member) => {
-	const welcomeChannel = member.guild.channels.cache.get('840203319254188063');
+	const welcomeChannel = member.guild.channels.cache.get(CHANNELS.WELCOMECHANNEL);
 	const role = member.guild.roles.cache.get(ROLES.ONJOIN);
-	const guild = client.guilds.cache.get('825753614898167848');
-	const roadToChannel = guild.channels.cache.get('851794676637630494');
-	const discussChannel = guild.channels.cache.get('826673568930594816');
+	const guild = client.guilds.cache.get(GUILD.ID);
+	const roadToChannel = guild.channels.cache.get(CHANNELS.ROADTOCHANNEL);
+	const discussChannel = guild.channels.cache.get(CHANNELS.DISCUSSCHANNEL);
 	const currentRoadTo = 50;
 
 	welcomeChannel.send(`${member}, salut mec !`);

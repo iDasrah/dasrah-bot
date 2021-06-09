@@ -3,6 +3,7 @@ const { MESSAGES } = require('../../utils/consts');
 const { addRole, removeRole } = require('../../utils/functions');
 
 module.exports.run = (client, message, args) => {
+	message.delete();
 	const action = args[0];
 	const taggedMember = message.mentions.members.first();
 	let roleArgs = args.splice(2);

@@ -2,6 +2,7 @@ const { bot_messages } = require('../../json/config.json');
 const { MESSAGES } = require('../../utils/consts');
 
 module.exports.run = async (client, message, args) => {
+	message.delete();
 	const nbrMsg = args[0];
 
 	if (nbrMsg) {
