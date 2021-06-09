@@ -12,7 +12,7 @@ const { loadCommands, loadEvents } = require('./utils/loader');
 const client = new Client();
 require('./utils/dbfunctions')(client);
 client.mongoose = require('./utils/mongoose');
-client.config = require('./json/config.json');
+client.config = require('./config');
 
 // collections
 ['commands'].forEach((collection) => (client[collection] = new Collection()));

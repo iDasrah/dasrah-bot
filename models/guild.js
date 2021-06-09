@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { defaults } = require('../json/config.json');
+const { defaults } = require('../config');
 
 const guildSchema = mongoose.Schema({
 	_id: mongoose.Schema.Types.ObjectId,
