@@ -1,6 +1,7 @@
 const { MessageEmbed } = require('discord.js');
 const { prefix, bot_messages } = require('../../json/config.json');
 const { readdirSync } = require('fs');
+const { MESSAGES } = require('../../utils/consts');
 const categoryList = readdirSync('./commands');
 
 module.exports.run = (client, message, args) => {
@@ -39,11 +40,4 @@ module.exports.run = (client, message, args) => {
 	}
 };
 
-module.exports.help = {
-	name: 'help',
-	description: 'Informations sur les commandes du bot',
-	category: 'general',
-	usage: '[commande]',
-	args: [false, [1, '']],
-	aliases: ['h'],
-};
+module.exports.help = MESSAGES.COMMANDS.GENERAL.HELP;

@@ -1,5 +1,6 @@
 const { answers } = require('../../json/8ball.json');
-const { random } = require('../../exports');
+const { random } = require('../../utils/functions');
+const { MESSAGES } = require('../../utils/consts');
 
 module.exports.run = (client, message, args) => {
 	const question = args.slice(0).join(' ');
@@ -7,11 +8,4 @@ module.exports.run = (client, message, args) => {
 	message.reply(answer.toLowerCase());
 };
 
-module.exports.help = {
-	name: '8ball',
-	description: 'Posez une question !',
-	args: [true, [100, '']],
-	usage: '<question>',
-	category: 'games',
-	aliases: ['8b'],
-};
+module.exports.help = MESSAGES.COMMANDS.GAMES.BALL;

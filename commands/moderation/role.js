@@ -1,4 +1,5 @@
 const { bot_messages } = require('../../json/config.json');
+const { MESSAGES } = require('../../utils/consts');
 
 function addRole(taggedMember, role, message) {
 	if (role) {
@@ -52,12 +53,4 @@ module.exports.run = (client, message, args) => {
 	}
 };
 
-module.exports.help = {
-	name: 'role',
-	description: 'Gérer les rôles',
-	args: [true, [3, 'strict']],
-	permission: 'MANAGE_ROLES',
-	usage: '<add/adds/remove/removes> <utilisateur> <role/roles>',
-	category: 'moderation',
-	aliases: ['r'],
-};
+module.exports.help = MESSAGES.COMMANDS.MODERATION.ROLE;

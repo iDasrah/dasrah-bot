@@ -3,7 +3,8 @@ const { MessageEmbed } = require('discord.js');
 const { bot_messages } = require('../../json/config.json');
 const editJsonFile = require('edit-json-file');
 const { isURL } = require('validator');
-const { random } = require('../../exports');
+const { random } = require('../../utils/functions');
+const { MESSAGES } = require('../../utils/consts');
 
 function getFromType(device, type) {
 	device = device === 'desktop' ? desktop : mobile;
@@ -91,11 +92,4 @@ module.exports.run = (client, message, args) => {
 	}
 };
 
-module.exports.help = {
-	name: 'wallpaper',
-	description: "Génère un fond d'écran aléatoire",
-	args: [false, [4, '']],
-	usage: '[mobile/desktop/add] [type]/<appareil> <type> <url>',
-	category: 'misc',
-	aliases: ['wp'],
-};
+module.exports.help = MESSAGES.COMMANDS.MISC.WALLPAPER;

@@ -1,7 +1,8 @@
 const { MessageEmbed } = require('discord.js');
 const { messages } = require('../../json/avatar.json');
 const { bot_messages } = require('../../json/config.json');
-const { random } = require('../../exports');
+const { random } = require('../../utils/functions');
+const { MESSAGES } = require('../../utils/consts');
 
 module.exports.run = (client, message, args) => {
 	const embed = new MessageEmbed()
@@ -22,11 +23,4 @@ module.exports.run = (client, message, args) => {
 	}
 };
 
-module.exports.help = {
-	name: 'avatar',
-	description: "Envoie l'avatar de l'utilisateur",
-	args: [false, [1, '']],
-	usage: '[utilisateur]',
-	category: 'misc',
-	aliases: ['pp', 'a'],
-};
+module.exports.help = MESSAGES.COMMANDS.MISC.AVATAR;

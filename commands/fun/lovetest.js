@@ -1,5 +1,6 @@
 const { MessageEmbed } = require('discord.js');
-const { random } = require('../../exports');
+const { random } = require('../../utils/functions');
+const { MESSAGES } = require('../../utils/consts');
 
 module.exports.run = (client, message, args) => {
 	const taggedUser = message.mentions.users.first();
@@ -26,11 +27,4 @@ module.exports.run = (client, message, args) => {
 	return message.channel.send(embed);
 };
 
-module.exports.help = {
-	name: 'lovetest',
-	description: "Découvrez quel pourcentage d'amour vous avez avec un autre membre",
-	args: [true, [1, 'strict']],
-	usage: '<membre>',
-	category: 'fun',
-	aliases: ['lv', 'lt', 'love'],
-};
+module.exports.help = MESSAGES.COMMANDS.FUN.LOVETEST;

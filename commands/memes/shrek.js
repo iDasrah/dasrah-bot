@@ -1,6 +1,7 @@
 const { shrek } = require('../../json/memes.json');
 const { MessageEmbed } = require('discord.js');
-const { random } = require('../../exports');
+const { random } = require('../../utils/functions');
+const { MESSAGES } = require('../../utils/consts');
 
 module.exports.run = (client, message, args) => {
 	const embed = new MessageEmbed()
@@ -11,11 +12,4 @@ module.exports.run = (client, message, args) => {
 	message.channel.send(embed);
 };
 
-module.exports.help = {
-	name: 'shrek',
-	description: 'Génère un meme aléatoire de shrek',
-	args: [false, [0, '']],
-	category: 'memes',
-	usage: '',
-	aliases: [],
-};
+module.exports.help = MESSAGES.COMMANDS.MEMES.SHREK;

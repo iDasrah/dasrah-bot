@@ -1,4 +1,5 @@
 const { bot_messages } = require('../../json/config.json');
+const { MESSAGES } = require('../../utils/consts');
 
 module.exports.run = (client, message, args) => {
 	const taggedMember = message.mentions.members.first();
@@ -10,11 +11,4 @@ module.exports.run = (client, message, args) => {
 	message.channel.send(`Retourne à la cuisine, femme !!! ${taggedMember}`);
 };
 
-module.exports.help = {
-	name: 'cuisine',
-	description: 'Remettre les femmes à leur place',
-	args: [true, [1, 'strict']],
-	usage: '<utilisateur>',
-	category: 'fun',
-	aliases: [],
-};
+module.exports.help = MESSAGES.COMMANDS.FUN.CUISINE;

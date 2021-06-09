@@ -1,6 +1,7 @@
 const { MessageEmbed, MessageAttachment } = require('discord.js');
 const dice = new MessageAttachment('./assets/img/dice.png');
 const { bot_messages, prefix } = require('../../json/config.json');
+const { MESSAGES } = require('../../utils/consts');
 const number = () => Math.floor(Math.random() * 6 + 1);
 
 module.exports.run = (client, message, args) => {
@@ -47,11 +48,4 @@ module.exports.run = (client, message, args) => {
 	message.channel.send(embed);
 };
 
-module.exports.help = {
-	name: 'dice',
-	description: 'Jeu de dés',
-	args: [false, [2, '']],
-	usage: '[duel] <utilisateur>',
-	category: 'games',
-	aliases: ['d'],
-};
+module.exports.help = MESSAGES.COMMANDS.GAMES.DICE;

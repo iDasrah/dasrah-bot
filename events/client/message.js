@@ -22,16 +22,19 @@ module.exports = (client, message) => {
 			.addField('Usage', `${prefix}${command.help.name} ${command.help.usage}`);
 		return message.reply(embed);
 	}
+
 	// si pas la permission
-	else if (!message.member.hasPermission(command.help.permission))
+	if (!message.member.hasPermission(command.help.permission))
 		return message.reply(bot_messages['no-permission-error']);
+
 	// si trop d'arguments
-	else if (args.length > command.help.args[1])
+	if (args.length > command.help.args[1])
 		return message.reply(
 			`${bot_messages['too-much-arguments-error']}\r\n\`${prefix}${command.help.name} ${command.help.usage}\``
 		);
+
 	// si pas assez d'arguments
-	else if (args.length < command.help.args[1][0] && command.help.args[1][1] === 'strict')
+	if (args.length < command.help.args[1][0] && command.help.args[1][1] === 'strict')
 		return message.reply(
 			`${bot_messages['not-enough-arguments-error']}\r\n\`${prefix}${command.help.name} ${command.help.usage}\``
 		);

@@ -1,4 +1,5 @@
 const { bot_messages } = require('../../json/config.json');
+const { MESSAGES } = require('../../utils/consts');
 
 module.exports.run = async (client, message, args) => {
 	const nbrMsg = args[0];
@@ -20,13 +21,4 @@ module.exports.run = async (client, message, args) => {
 	}
 };
 
-module.exports.help = {
-	name: 'clear',
-	description: 'Nettoie le channel',
-	args: [false, [1, '']],
-	permission: 'MANAGE_MESSAGES',
-	usage: '[nombre]',
-	cooldown: 5,
-	category: 'moderation',
-	aliases: ['c'],
-};
+module.exports.help = MESSAGES.COMMANDS.MODERATION.CLEAR;
