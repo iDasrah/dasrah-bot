@@ -1,7 +1,7 @@
 const { bot_info, prefix } = require('../../json/config.json');
 const { MessageEmbed } = require('discord.js');
 const memes = require('../../json/memes.json');
-const { sendBar, clearChannel } = require('../../utils/functions');
+const { loadBar, clearChannel } = require('../../utils/functions');
 const { loadEmbeds } = require('../../utils/embeds');
 const { roles } = require('../../utils/roles');
 const { emotes } = require('../../utils/emotes');
@@ -47,7 +47,7 @@ module.exports = (client) => {
 
 	// road to bar
 	clearChannel(roadToChannel);
-	sendBar(roadToChannel, guild);
+	loadBar(roadToChannel, guild);
 
 	// confirmations
 	console.log('Messages de rôles envoyés !');

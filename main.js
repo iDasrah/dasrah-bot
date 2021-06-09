@@ -6,6 +6,7 @@ const token = process.env.token || 'ODI1NzU0OTEwMDExODE3OTg0.YGCiMA.WV84IEyZnOSD
 const { loadCommands, loadEvents } = require('./utils/loader');
 
 const client = new Client();
+// require('./utils/functions')(client);
 client.mongoose = require('./utils/mongoose');
 
 // collections

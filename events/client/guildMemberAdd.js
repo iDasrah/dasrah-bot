@@ -1,6 +1,6 @@
 const { createCanvas, loadImage } = require('canvas');
 const { ROLES, CHANNELS, GUILD } = require('../../utils/consts');
-const { clearChannel, sendBar } = require('../../utils/functions');
+const { clearChannel, loadBar } = require('../../utils/functions');
 
 module.exports = (client, member) => {
 	const welcomeChannel = member.guild.channels.cache.get(CHANNELS.WELCOMECHANNEL);
@@ -17,5 +17,5 @@ module.exports = (client, member) => {
 
 	// road to bar
 	clearChannel(roadToChannel);
-	sendBar(roadToChannel, guild);
+	loadBar(roadToChannel, guild);
 };

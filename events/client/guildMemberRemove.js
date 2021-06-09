@@ -1,5 +1,5 @@
 const { createCanvas, loadImage } = require('canvas');
-const { sendBar, clearChannel } = require('../../utils/functions');
+const { loadBar, clearChannel } = require('../../utils/functions');
 const { GUILD, CHANNELS } = require('../../utils/consts');
 
 module.exports = (client, member) => {
@@ -13,5 +13,5 @@ module.exports = (client, member) => {
 
 	// road to bar
 	clearChannel(roadToChannel);
-	sendBar(roadToChannel, guild);
+	loadBar(roadToChannel, guild);
 };

@@ -1,6 +1,8 @@
-const { createCanvas, loadImage } = require('canvas');
+const { createCanvas, loadImage, Image } = require('canvas');
 const { MessageAttachment, MessageEmbed } = require('discord.js');
 const { GUILD } = require('./consts');
+const { User } = require('../models/index');
+const mongoose = require('mongoose');
 
 function random(min, max) {
 	min = Math.ceil(min);
@@ -14,7 +16,7 @@ const clearChannel = async (channel) =>
 		channel.bulkDelete(messages);
 	});
 
-async function sendBar(channel, guild) {
+async function loadBar(channel, guild) {
 	const canva = createCanvas(562, 319);
 	const ctx = canva.getContext('2d');
 	const bg = await loadImage('./assets/img/canvas_background.jpg');
@@ -124,9 +126,48 @@ function removeRole(taggedMember, role, message) {
 	} else return message.reply(bot_messages['role-doesnt-exist']);
 }
 
+// client.createUser = async (user) => {
+// 	const merged = Object.assign({ _id: mongoose.Types.ObjectId() }, user);
+// 	const createUser = await new User(merged);
+// 	createUser.save();
+// };
+
+// client.getUser = async (user) => {
+// 	const data = await User.findOne({ userID: user.id });
+// 	if (data) return data;
+// 	else return;
+// };
+
+async function loadLoveTest(channel, user1, user2, score) {
+	const canva = createCanvas(550, 360);
+	const ctx = canva.getContext('2d');
+	const bg = await loadImage('./assets/img/love_background.jpg');
+	const user1Avatar = await loadImage(user1.displayAvatarURL({ format: 'jpg', size: 128 }));
+	const user2Avatar = await loadImage(user2.displayAvatarURL({ format: 'jpg', size: 128 }));
+
+	ctx.drawImage(bg, 0, 0, canva.width, canva.height);
+	ctx.drawImage(user1Avatar, 100, 100);
+	ctx.drawImage(user2Avatar, 322, 100);
+
+	ctx.fillStyle = '#e66767';
+	ctx.globalAlpha = 1;
+	ctx.font = '50px Arial';
+	ctx.textAlign = 'center';
+
+	ctx.fillText(`${score}%`, 275, 300);
+
+	ctx.fillStyle = '#e66767';
+	ctx.font = '60px Arial';
+	ctx.fillText('LOVE TEST', 275, 70);
+
+	const attachment = new MessageAttachment(canva.toBuffer(), 'lovetest.png');
+
+	channel.send(attachment);
+}
+
 module.exports = {
 	random,
-	sendBar,
+	loadBar,
 	clearChannel,
 	getFromType,
 	sendWallpaper,
@@ -135,4 +176,5 @@ module.exports = {
 	addToList,
 	addRole,
 	removeRole,
+	loadLoveTest,
 };
