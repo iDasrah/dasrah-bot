@@ -16,7 +16,7 @@ client.mongoose = require('./utils/mongoose');
 client.config = require('./config');
 
 // collections
-['commands'].forEach((collection) => (client[collection] = new Collection()));
+['commands', 'events'].forEach((collection) => (client[collection] = new Collection()));
 
 loadCommands(client);
 loadEvents(client);
