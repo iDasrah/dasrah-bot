@@ -37,7 +37,7 @@ module.exports = {
 		name: 'Sashaa',
 		version: 1.3,
 	},
-	database_connect: `mongodb+srv://${process.env.db_username}:${process.env.db_password}@cluster0.yjwsy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
+	database_connect: `mongodb+srv://${process.env.db_username}:${process.env.db_password}@cluster0.fe7di.mongodb.net/app?retryWrites=true&w=majority`,
 	defaults: {
 		prefix: '-',
 	},
