@@ -3,6 +3,7 @@ const { MESSAGES, GUILD, EVENTS, CHANNELS } = require('../../utils/consts');
 module.exports.run = (client, message, args) => {
 	const guild = client.guilds.cache.get(GUILD.ID);
 	const eventCategory = client.channels.cache.get(CHANNELS.EVENTCATEGORY);
+	const eventAnnouncements = client.channels.cache.get('852670487691001876');
 	const eventName = args.join(' ');
 
 	for (const event in EVENTS) {
@@ -21,7 +22,7 @@ module.exports.run = (client, message, args) => {
 			else client.events.set(eventName, { actives: actives + 1 });
 		}
 	}
-	return;
+	return eventAnnouncements.send(`@everyone L'évènement ${eventName} a commencé ! Passe faire un tour.`);
 };
 
 module.exports.help = MESSAGES.COMMANDS.ANIMATION.EVENT;
