@@ -11,6 +11,7 @@ const { loadCommands, loadEvents } = require('./utils/loader');
 
 const client = new Client();
 require('./utils/dbfunctions')(client);
+
 client.mongoose = require('./utils/mongoose');
 client.config = require('./config');
 
