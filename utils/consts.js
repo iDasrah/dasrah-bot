@@ -175,6 +175,26 @@ const MESSAGES = {
 				permission: 'ADMINISTRATOR',
 			},
 		},
+		ANIMATION: {
+			EVENT: {
+				name: 'event',
+				description: 'Créer un salon vocal dédié à un évènement',
+				args: [true, [100, '']],
+				usage: '<event>',
+				category: 'animation',
+				aliases: ['ev'],
+				permission: 'MANAGE_CHANNELS',
+			},
+			ENDEVENTS: {
+				name: 'endevent',
+				description: 'Arrêtez un évènement',
+				args: [true, [100, '']],
+				usage: '',
+				category: 'animation',
+				aliases: ['endev'],
+				permission: 'MANAGE_CHANNELS',
+			},
+		},
 	},
 };
 
@@ -190,6 +210,7 @@ const CHANNELS = {
 	QUITCHANNEL: '846288755480592435',
 	ROLECHANNEL: '846459783674593371',
 	MEMESCHANNEL: '845273490764333057',
+	EVENTCATEGORY: '852641399735713803',
 };
 
 const GUILD = {
@@ -197,7 +218,15 @@ const GUILD = {
 	ROADTO: 50,
 };
 
+const EVENTS = {
+	GARTICPHONE: {
+		name: 'garticphone',
+		channel: 'gartic phone',
+	},
+};
+
 exports.MESSAGES = MESSAGES;
 exports.ROLES = ROLES;
 exports.CHANNELS = CHANNELS;
 exports.GUILD = GUILD;
+exports.EVENTS = EVENTS;
