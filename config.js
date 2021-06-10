@@ -30,6 +30,7 @@ module.exports = {
 		no_search: 'veuillez me donner un url ou des mots clés.',
 		no_video_found: "aucune vidéo n'a été trouvée avec cette recherche.",
 		couldnt_connect: "je n'ai pas pu me connecter dans le salon vocal.",
+		no_event_active: "cet évènement n'est pas actif actuellement.",
 	},
 	bot_info: {
 		name: 'Sashaa',
