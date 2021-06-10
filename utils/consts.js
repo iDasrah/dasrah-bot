@@ -223,6 +223,18 @@ const EVENTS = {
 		name: 'garticphone',
 		channel: 'gartic phone',
 	},
+	SKRIBBL: {
+		name: 'skribbl',
+		channel: 'skribbl'
+	},
+	MINECRAFT: {
+		name: 'minecraft',
+		channel: 'minecraft'
+	},
+	KCULTURE: {
+		name: 'kculture',
+		channel: 'kculture'
+	}
 };
 
 exports.MESSAGES = MESSAGES;
