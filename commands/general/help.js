@@ -20,7 +20,7 @@ module.exports.run = (client, message, args, settings) => {
 				`${client.commands
 					.filter((cat) => cat.help.category === category)
 					.map((cmd) => cmd.help.name)
-					.join('\r\n ')}`
+					.join('\r\n')}`
 			);
 		}
 		return message.channel.send(embed);
