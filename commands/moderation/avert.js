@@ -1,10 +1,13 @@
 const { MESSAGES } = require('../../utils/consts');
 
-module.exports.run = (client, message, args) => {
+module.exports.run = async (client, message, args) => {
 	message.delete();
-	const taggedUser = message.mentions.users.first();
+	const taggedMember = message.mentions.members.first();
+
+	await client.updateUser(taggedMember);
+
 	message.channel.send(
-		`${taggedUser}, vous avez été averti par ${message.author} ! Faites attention la prochaine fois.`
+		`${taggedMember}, vous avez été averti par ${message.author} ! Faites attention la prochaine fois.`
 	);
 };
 
