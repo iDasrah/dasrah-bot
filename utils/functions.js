@@ -14,10 +14,11 @@ const clearChannel = async (channel) =>
 		channel.bulkDelete(messages);
 	});
 
-async function loadBar(channel, guild) {
-	const canva = createCanvas(562, 319);
+async function loadRoadToBar(client, guild) {
+	const canva = createCanvas(800, 500);
 	const ctx = canva.getContext('2d');
-	const bg = await loadImage('./assets/img/canvas_background.jpg');
+	const bg = await loadImage('./assets/bgs/road_to.png');
+	const guildInfo = await client.getGuild(guild);
 
 	ctx.drawImage(bg, 0, 0, canva.width, canva.height);
 	ctx.beginPath();
@@ -25,27 +26,28 @@ async function loadBar(channel, guild) {
 	ctx.strokeStyle = '#63cdda';
 	ctx.globalAlpha = 0.5;
 	ctx.fillStyle = '#303952';
-	ctx.fillRect(100, 134, 362, 50);
+	ctx.fillRect(100, 225, 600, 50);
 	ctx.globalAlpha = 1;
-	ctx.strokeRect(100, 134, 362, 50);
+	ctx.strokeRect(100, 225, 600, 50);
 
 	ctx.fillStyle = '#32ff7e';
 	ctx.globalAlpha = 0.8;
-	ctx.fillRect(101, 134, (100 / GUILD.ROADTO) * guild.memberCount * 3.61, 50);
+	ctx.fillRect(100, 225, (100 / guildInfo.roadTo) * guild.memberCount * 6, 50);
 
 	ctx.globalAlpha = 1;
 	ctx.fillStyle = '#fff';
 
 	ctx.font = '40px Arial';
 	ctx.textAlign = 'center';
-	ctx.fillText(`ROAD TO ${GUILD.ROADTO} MEMBRES !`, 281, 60);
+	ctx.fillText(`ROAD TO ${guildInfo.roadTo} MEMBRES !`, 400, 60);
 
-	ctx.font = '20px Arial';
+	ctx.font = '30px Arial';
 	ctx.textAlign = 'center';
-	ctx.fillText(`${guild.memberCount} / ${GUILD.ROADTO}`, 281, 166);
+	ctx.fillText(`${guild.memberCount} / ${guildInfo.roadTo}`, 400, 260);
 
 	const attachment = new MessageAttachment(canva.toBuffer(), 'roadto.png');
-	channel.send(attachment);
+
+	return attachment;
 }
 
 function getFromType(device, type) {
@@ -159,7 +161,7 @@ function removeRole(taggedMember, role, message) {
 	}
 }
 
-async function loadLoveTest(channel, user1, user2, score) {
+async function loadLoveTest(user1, user2, score) {
 	const canva = createCanvas(550, 360);
 	const ctx = canva.getContext('2d');
 	const bg = await loadImage('./assets/img/love_background.jpg');
@@ -183,12 +185,26 @@ async function loadLoveTest(channel, user1, user2, score) {
 
 	const attachment = new MessageAttachment(canva.toBuffer(), 'lovetest.png');
 
-	channel.send(attachment);
+	return attachment;
+}
+
+// TODO: LOAD XP BAR
+
+async function isReached(guild, client, channel) {
+	const guildInfo = client.getGuild(guild);
+	const guildRoadTo = guildInfo.roadTo;
+
+	if (guild.memberCount >= guildRoadTo) {
+		client.updateGuild(guild, { roadTo: guildRoadTo * 2 });
+		channel.send(`L'OBJECTIF A ETE ATTEINT !!!! :partying_face:`);
+		const attachment = loadRoadToBar(client, guild);
+		return true;
+	} else return false;
 }
 
 module.exports = {
 	random,
-	loadBar,
+	loadRoadToBar,
 	clearChannel,
 	getFromType,
 	sendWallpaper,
@@ -197,4 +213,5 @@ module.exports = {
 	addRole,
 	removeRole,
 	loadLoveTest,
+	isReached,
 };

@@ -75,6 +75,16 @@ const MESSAGES = {
 				tag: false,
 				permission: '',
 			},
+			LEVEL: {
+				name: 'level',
+				description: 'Regarde ton expérience',
+				args: [false, [1, '']],
+				usage: '[membre]',
+				category: 'general',
+				aliases: ['lvl'],
+				permission: '',
+				tag: false,
+			},
 		},
 		MEMES: {
 			MATH: {
@@ -256,7 +266,6 @@ const CHANNELS = {
 
 const GUILD = {
 	ID: '825753614898167848',
-	ROADTO: 50,
 };
 
 const EVENTS = {
