@@ -9,6 +9,10 @@ const guildSchema = mongoose.Schema({
 		type: String,
 		default: defaults.prefix,
 	},
+	roadTo: {
+		type: Number,
+		default: 50,
+	},
 });
 
 module.exports = mongoose.model('Guild', guildSchema);
