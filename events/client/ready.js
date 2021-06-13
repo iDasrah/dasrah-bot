@@ -21,6 +21,21 @@ module.exports = async (client) => {
 
 	const settings = await client.getGuild(guild);
 
+	const members = guild.members.cache;
+
+	members.forEach(async (member) => {
+		if (member.user.bot) return;
+		else if (!(await client.getUser(member))) {
+			const newMember = {
+				guildID: member.guild.id,
+				guildName: member.guild.name,
+				userID: member.id,
+				userName: member.user.username,
+			};
+			await client.createUser(newMember);
+		}
+	});
+
 	// load all messages of role channel
 	roleChannel.messages.fetch();
 
