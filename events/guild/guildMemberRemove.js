@@ -1,7 +1,7 @@
-const { loadBar, clearChannel } = require('../../utils/functions');
+const { loadRoadToBar, clearChannel } = require('../../utils/functions');
 const { GUILD, CHANNELS } = require('../../utils/consts');
 
-module.exports = (client, member) => {
+module.exports = async (client, member) => {
 	// membre quitte
 	const quitChannel = member.guild.channels.cache.get(CHANNELS.QUITCHANNEL);
 	const guild = client.guilds.cache.get(GUILD.ID);
@@ -11,6 +11,10 @@ module.exports = (client, member) => {
 	quitChannel.send(`Pourquoi t'es parti ${member} :(`);
 
 	// road to bar
-	clearChannel(roadToChannel);
-	loadBar(roadToChannel, guild);
+	const attachment = await loadRoadToBar(client, guild);
+	if (await roadToChannel.lastMessage.attachments) {
+		roadToChannel.lastMessage.edit(attachment);
+	} else {
+		roadToChannel.send(attachment);
+	}
 };

@@ -1,5 +1,5 @@
 const { ROLES, CHANNELS, GUILD } = require('../../utils/consts');
-const { clearChannel, loadBar } = require('../../utils/functions');
+const { clearChannel, loadRoadToBar } = require('../../utils/functions');
 
 module.exports = async (client, member) => {
 	const newMember = {
@@ -23,6 +23,10 @@ module.exports = async (client, member) => {
 	discussChannel.send(`Souhaitez tous la bienvenue à ${member}, s'il vous plait !`);
 
 	// road to bar
-	clearChannel(roadToChannel);
-	loadBar(roadToChannel, guild);
+	const attachment = await loadRoadToBar(client, guild);
+	if (await roadToChannel.lastMessage.attachments) {
+		roadToChannel.lastMessage.edit(attachment);
+	} else {
+		roadToChannel.send(attachment);
+	}
 };
