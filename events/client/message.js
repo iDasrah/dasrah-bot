@@ -1,9 +1,26 @@
 const { MessageEmbed } = require('discord.js');
 
 module.exports = async (client, message) => {
-	const settings = await client.getGuild(message.guild);
+	if (message.author.bot) return;
 
-	if (!message.content.startsWith(settings.prefix) || message.author.bot) return;
+	const settings = await client.getGuild(message.guild);
+	const memberInfo = await client.getUser(message.member);
+
+	const memberXP = memberInfo.experience;
+	let memberLevel = memberInfo.level;
+
+	let newMemberXP = memberXP + Math.floor(Math.random() * 8) + 2;
+
+	if (newMemberXP >= memberLevel * 30) {
+		newMemberXP -= memberLevel * 30;
+		memberLevel++;
+
+		await client.updateUser(message.member, { experience: newMemberXP, level: memberLevel });
+
+		message.channel.send(`${message.member} est désormais niveau ${memberLevel} !`);
+	} else await client.updateUser(message.member, { experience: newMemberXP });
+
+	if (!message.content.startsWith(settings.prefix)) return;
 
 	const args = message.content.slice(settings.prefix.length).trim().split(/ +/);
 	const commandName = args.shift().toLowerCase();
