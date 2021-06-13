@@ -1,6 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 const memes = require('../../json/memes.json');
-const { loadBar, clearChannel } = require('../../utils/functions');
+const { loadRoadToBar, isReached } = require('../../utils/functions');
 const { GUILD, CHANNELS } = require('../../utils/consts');
 
 let memesList = [];
@@ -36,15 +36,20 @@ module.exports = async (client) => {
 		}
 	});
 
-	// load all messages of role channel
-	roleChannel.messages.fetch();
+	// load all messages of role & roadto channel
+	await roleChannel.messages.fetch();
+	await roadToChannel.messages.fetch();
 
 	// road to bar
-	clearChannel(roadToChannel);
-	loadBar(roadToChannel, guild);
+	const attachment = await loadRoadToBar(client, guild);
+	if (await roadToChannel.lastMessage.attachments) {
+		roadToChannel.lastMessage.edit(attachment);
+	} else {
+		roadToChannel.send(attachment);
+	}
+	isReached(guild, client, roadToChannel);
 
 	// confirmations
-	console.log('Messages de rôles envoyés !');
 	console.log(`${client.config.bot_info.name}: Je suis prête !`);
 
 	// status
