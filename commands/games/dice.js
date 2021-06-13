@@ -28,7 +28,7 @@ module.exports.run = (client, message, args, settings) => {
 		else embed.setFooter(`VICTOIRE DE ${client.user.username}`);
 	} else if (action === 'duel') {
 		const taggedUser = message.mentions.users.first();
-		if (!taggedUser) return message.reply(client.config.bot_messages['no-user-tagged']);
+		if (!taggedUser) return message.reply(client.config.bot_messages['no_user_tagged']);
 		const number1 = number();
 		const number2 = number();
 		embed
@@ -42,7 +42,7 @@ module.exports.run = (client, message, args, settings) => {
 		else embed.setFooter(`VICTOIRE DE ${taggedUser.username}`);
 	} else
 		return message.reply(
-			`${client.config.bot_messages['wrong-argument-error']}\r\n\`${settings.prefix}${exports.help.name} ${exports.help.usage}\``
+			`${client.config.bot_messages['wrong_argument_error']}\r\n\`${settings.prefix}${exports.help.name} ${exports.help.usage}\``
 		);
 	message.channel.send(embed);
 };

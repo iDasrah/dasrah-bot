@@ -26,7 +26,7 @@ module.exports.run = (client, message, args, settings) => {
 		return message.channel.send(embed);
 	} else {
 		const command = client.commands.get(commandArg);
-		if (!command) return message.reply(client.config.bot_messages['help-invalid-command']);
+		if (!command) return message.reply(client.config.bot_messages['help_invalid_command']);
 		const embed = new MessageEmbed()
 			.setColor('#D0D4F9')
 			.setTitle(`HELP: ${command.help.name}`)

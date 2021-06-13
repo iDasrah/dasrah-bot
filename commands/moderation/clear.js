@@ -5,9 +5,9 @@ module.exports.run = async (client, message, args) => {
 	const nbrMsg = args[0];
 
 	if (nbrMsg) {
-		if (isNaN(nbrMsg)) return message.reply(client.config.bot_messages['NaN-arg-error']);
-		else if (nbrMsg > 100) return message.reply(client.config.bot_messages['too-much-clear-error']);
-		else if (nbrMsg < 1) return message.reply(client.config.bot_messages['not-enough-clear-error']);
+		if (isNaN(nbrMsg)) return message.reply(client.config.bot_messages['NaN_arg_error']);
+		else if (nbrMsg > 100) return message.reply(client.config.bot_messages['too_much_clear_error']);
+		else if (nbrMsg < 1) return message.reply(client.config.bot_messages['not_enough_clear_error']);
 	}
 
 	if (!args.length) {

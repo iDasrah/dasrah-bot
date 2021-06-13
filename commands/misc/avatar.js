@@ -15,7 +15,7 @@ module.exports.run = (client, message, args) => {
 		message.reply(embed);
 	} else {
 		const taggedUser = message.mentions.users.first();
-		if (!taggedUser) return message.reply(client.config.bot_messages['no-user-tagged']);
+		if (!taggedUser) return message.reply(client.config.bot_messages['no_user_tagged']);
 		embed.setTitle(`AVATAR DE ${taggedUser.username.toUpperCase()}`);
 		embed.setImage(taggedUser.displayAvatarURL({ dynamic: true, size: 4096 }));
 		message.reply(embed);
