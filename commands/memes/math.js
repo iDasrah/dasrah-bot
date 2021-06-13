@@ -5,7 +5,7 @@ const { MESSAGES } = require('../../utils/consts');
 
 module.exports.run = (client, message, args) => {
 	const embed = new MessageEmbed()
-		.setColor('#FE2EE4')
+		.setColor('#FAF3E1')
 		.setTitle('MATH MEME GENERATOR')
 		.setTimestamp()
 		.setImage(math[random(0, math.length)].url);

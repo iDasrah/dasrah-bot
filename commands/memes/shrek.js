@@ -5,7 +5,7 @@ const { MESSAGES } = require('../../utils/consts');
 
 module.exports.run = (client, message, args) => {
 	const embed = new MessageEmbed()
-		.setColor('#41B64C')
+		.setColor('#70CAB0')
 		.setTitle('SHREK MEME GENERATOR')
 		.setTimestamp()
 		.setImage(shrek[random(0, shrek.length)].url);
