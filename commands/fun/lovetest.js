@@ -5,7 +5,8 @@ module.exports.run = async (client, message, args) => {
 	const taggedUser = message.mentions.users.first();
 	const love = random(0, 101);
 
-	await loadLoveTest(message.channel, message.author, taggedUser, love);
+	const attachment = await loadLoveTest(message.author, taggedUser, love);
+	message.channel.send(attachment);
 
 	if (love < 20)
 		return message.channel.send("Je crois que vous n'êtes pas faits pour être ensembles.");
