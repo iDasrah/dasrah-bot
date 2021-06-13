@@ -11,7 +11,7 @@ module.exports.run = (client, message, args, settings) => {
 			.setColor('#36394F')
 			.addField(
 				'HELP',
-				`Liste des commandes\r\nPour plus d'infos sur une commande, tapez ${client.config.prefix}${exports.help.name} [commande]`
+				`Liste des commandes\r\nPour plus d'infos sur une commande, tapez ${settings.prefix}${exports.help.name} [commande]`
 			);
 
 		for (const category of categoryList) {
@@ -20,7 +20,7 @@ module.exports.run = (client, message, args, settings) => {
 				`${client.commands
 					.filter((cat) => cat.help.category === category)
 					.map((cmd) => cmd.help.name)
-					.join('\r\n ')}`
+					.join('\r\n')}`
 			);
 		}
 		return message.channel.send(embed);
