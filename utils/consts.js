@@ -8,6 +8,8 @@ const MESSAGES = {
 				usage: '<utilisateur>',
 				category: 'fun',
 				aliases: [],
+				tag: true,
+				permission: '',
 			},
 			LOVETEST: {
 				name: 'lovetest',
@@ -16,6 +18,8 @@ const MESSAGES = {
 				usage: '<membre>',
 				category: 'fun',
 				aliases: ['lv', 'lt', 'love'],
+				tag: true,
+				permission: '',
 			},
 			SHEESH: {
 				name: 'sheesh',
@@ -24,6 +28,8 @@ const MESSAGES = {
 				usage: '',
 				category: 'fun',
 				aliases: [],
+				tag: false,
+				permission: '',
 			},
 		},
 		GAMES: {
@@ -34,6 +40,8 @@ const MESSAGES = {
 				usage: '<question>',
 				category: 'games',
 				aliases: ['8b'],
+				permission: '',
+				tag: false,
 			},
 			DICE: {
 				name: 'dice',
@@ -42,6 +50,8 @@ const MESSAGES = {
 				usage: '[duel] <utilisateur>',
 				category: 'games',
 				aliases: ['d'],
+				tag: false,
+				permission: '',
 			},
 		},
 		GENERAL: {
@@ -52,6 +62,8 @@ const MESSAGES = {
 				usage: '[commande]',
 				args: [false, [1, '']],
 				aliases: ['h'],
+				tag: false,
+				permission: '',
 			},
 			PING: {
 				name: 'ping',
@@ -60,6 +72,8 @@ const MESSAGES = {
 				category: 'general',
 				usage: '',
 				aliases: [],
+				tag: false,
+				permission: '',
 			},
 		},
 		MEMES: {
@@ -70,6 +84,8 @@ const MESSAGES = {
 				category: 'memes',
 				usage: '',
 				aliases: ['maths'],
+				tag: false,
+				permission: '',
 			},
 			SHREK: {
 				name: 'shrek',
@@ -78,6 +94,8 @@ const MESSAGES = {
 				category: 'memes',
 				usage: '',
 				aliases: [],
+				tag: false,
+				permission: '',
 			},
 		},
 		MISC: {
@@ -88,6 +106,8 @@ const MESSAGES = {
 				usage: '[utilisateur]',
 				category: 'misc',
 				aliases: ['pp', 'a'],
+				tag: false,
+				permission: '',
 			},
 			WALLPAPER: {
 				name: 'wallpaper',
@@ -96,6 +116,8 @@ const MESSAGES = {
 				usage: '[mobile/desktop/add] [type]/<appareil> <type> <url>',
 				category: 'misc',
 				aliases: ['wp'],
+				tag: false,
+				permission: '',
 			},
 		},
 		MODERATION: {
@@ -107,6 +129,7 @@ const MESSAGES = {
 				category: 'moderation',
 				aliases: ['b'],
 				permission: 'BAN_MEMBERS',
+				tag: true,
 			},
 			CLEAR: {
 				name: 'clear',
@@ -117,6 +140,7 @@ const MESSAGES = {
 				cooldown: 5,
 				category: 'moderation',
 				aliases: ['c'],
+				tag: false,
 			},
 			KICK: {
 				name: 'kick',
@@ -126,6 +150,7 @@ const MESSAGES = {
 				category: 'moderation',
 				aliases: ['k'],
 				permission: 'KICK_MEMBERS',
+				tag: true,
 			},
 			ROLE: {
 				name: 'role',
@@ -135,6 +160,7 @@ const MESSAGES = {
 				usage: '<add/adds/remove/removes> <utilisateur> <role/roles>',
 				category: 'moderation',
 				aliases: ['r'],
+				tag: true,
 			},
 			AVERT: {
 				name: 'avert',
@@ -144,6 +170,7 @@ const MESSAGES = {
 				category: 'moderation',
 				permission: 'KICK_MEMBERS',
 				aliases: ['av'],
+				tag: true,
 			},
 		},
 		ADMIN: {
@@ -155,6 +182,7 @@ const MESSAGES = {
 				category: 'admin',
 				aliases: ['rl'],
 				permission: 'ADMINISTRATOR',
+				tag: false,
 			},
 			CONFIG: {
 				name: 'config',
@@ -164,6 +192,7 @@ const MESSAGES = {
 				category: 'admin',
 				aliases: ['cg'],
 				permission: 'ADMINISTRATOR',
+				tag: false,
 			},
 			EVAL: {
 				name: 'eval',
@@ -173,6 +202,7 @@ const MESSAGES = {
 				category: 'admin',
 				aliases: ['ev'],
 				permission: 'ADMINISTRATOR',
+				tag: false,
 			},
 		},
 		ANIMATION: {
@@ -184,6 +214,7 @@ const MESSAGES = {
 				category: 'animation',
 				aliases: ['ev'],
 				permission: 'MANAGE_CHANNELS',
+				tag: false,
 			},
 			ENDEVENTS: {
 				name: 'endevent',
@@ -193,6 +224,7 @@ const MESSAGES = {
 				category: 'animation',
 				aliases: ['endev'],
 				permission: 'MANAGE_CHANNELS',
+				tag: false,
 			},
 			SURVEY: {
 				name: 'survey',
@@ -201,6 +233,7 @@ const MESSAGES = {
 				usage: '<sondage>',
 				category: 'animation',
 				aliases: ['sv', 'srv'],
+				tag: false,
 			},
 		},
 	},

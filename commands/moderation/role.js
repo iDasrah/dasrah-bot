@@ -7,8 +7,6 @@ module.exports.run = (client, message, args) => {
 	const taggedMember = message.mentions.members.first();
 	let roleArgs = args.splice(2);
 
-	if (!taggedMember) return message.reply(client.config.bot_messages['no_user_tagged']);
-
 	if (action === 'add') {
 		roleArgs = roleArgs.join(' ');
 		const role = message.guild.roles.cache.find((role) => role.name === roleArgs);

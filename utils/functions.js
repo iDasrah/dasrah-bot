@@ -1,8 +1,6 @@
-const { createCanvas, loadImage, Image } = require('canvas');
+const { createCanvas, loadImage } = require('canvas');
 const { MessageAttachment, MessageEmbed } = require('discord.js');
 const { GUILD } = require('./consts');
-const { User } = require('../models/index');
-const mongoose = require('mongoose');
 
 function random(min, max) {
 	min = Math.ceil(min);
@@ -80,7 +78,14 @@ function sendWallpaperByDevice(message, device) {
 
 	device = device === desktop ? 'desktop' : 'mobile';
 
-	if (device.length <= 1) return message.reply(bot_messages['no_urls_wallpaper']);
+	if (device.length <= 1) {
+		const embed = new MessageEmbed()
+			.setTitle('ERROR: NO_URLS_WALLPAPER_ERROR')
+			.setColor('#A80506')
+			.setDescription(client.config.bot_messages['no_urls_wallpaper'])
+			.addField('Usage', `${settings.prefix}${command.help.name} ${command.help.usage}`);
+		return message.reply(embed);
+	}
 
 	embed.setTitle(`${device.toUpperCase()} WALLPAPER GENERATOR`).setImage(image);
 	message.channel.send(embed);
@@ -93,37 +98,65 @@ function sendWallpaperByType(message, device, urls) {
 		.setTimestamp();
 	image = urls[random(0, urls.length)];
 
-	if (urls.length < 1) return message.reply(bot_messages['no_urls_wallpaper']);
+	if (urls.length < 1) {
+		const embed = new MessageEmbed()
+			.setTitle('ERROR: NO_URLS_WALLPAPER_ERROR')
+			.setColor('#A80506')
+			.setDescription(client.config.bot_messages['no_urls_wallpaper'])
+			.addField('Usage', `${settings.prefix}${command.help.name} ${command.help.usage}`);
+		return message.reply(embed);
+	}
 
 	embed.setTitle(`${device.toUpperCase()} WALLPAPER GENERATOR`).setImage(image);
 	message.channel.send(embed);
 }
 
-function addToList(device, type, url) {
-	const file = editJsonFile(`${__dirname}/wallpapers.json`);
-
-	file.append(device, { type: type, url: url });
-	file.save();
-}
-
 function addRole(taggedMember, role, message) {
 	if (role) {
-		if (taggedMember.roles.cache.has(role.id)) return message.reply(bot_messages['has_role']);
+		if (taggedMember.roles.cache.has(role.id)) {
+			const embed = new MessageEmbed()
+				.setTitle('ERROR: HAS_ROLE_ERROR')
+				.setColor('#A80506')
+				.setDescription(client.config.bot_messages['has_role'])
+				.addField('Usage', `${settings.prefix}${command.help.name} ${command.help.usage}`);
+			return message.reply(embed);
+		}
 		taggedMember.roles
 			.add(role)
 			.then(() => message.channel.send(`Vous avez donné le rôle ${role} à ${taggedMember.user}`));
-	} else return message.reply(bot_messages['role_doesnt_exist']);
+	} else {
+		const embed = new MessageEmbed()
+			.setTitle('ERROR: ROLE_DOESNT_EXIST_ERROR')
+			.setColor('#A80506')
+			.setDescription(client.config.bot_messages['role_doesnt_exist'])
+			.addField('Usage', `${settings.prefix}${command.help.name} ${command.help.usage}`);
+		return message.reply(embed);
+	}
 }
 
 function removeRole(taggedMember, role, message) {
 	if (role) {
-		if (!taggedMember.roles.cache.has(role.id)) return message.reply(bot_messages['hasnt_role']);
+		if (!taggedMember.roles.cache.has(role.id)) {
+			const embed = new MessageEmbed()
+				.setTitle('ERROR: HASNT_ROLE_ERROR')
+				.setColor('#A80506')
+				.setDescription(client.config.bot_messages['hasnt_role'])
+				.addField('Usage', `${settings.prefix}${command.help.name} ${command.help.usage}`);
+			return message.reply(embed);
+		}
 		taggedMember.roles
 			.remove(role)
 			.then(() =>
 				message.channel.send(`Vous avez supprimé le rôle ${role} de ${taggedMember.user}`)
 			);
-	} else return message.reply(bot_messages['role_doesnt_exist']);
+	} else {
+		const embed = new MessageEmbed()
+			.setTitle('ERROR: ROLE_DOESNT_EXIST_ERROR')
+			.setColor('#A80506')
+			.setDescription(client.config.bot_messages['role_doesnt_exist'])
+			.addField('Usage', `${settings.prefix}${command.help.name} ${command.help.usage}`);
+		return message.reply(embed);
+	}
 }
 
 async function loadLoveTest(channel, user1, user2, score) {
@@ -161,7 +194,6 @@ module.exports = {
 	sendWallpaper,
 	sendWallpaperByDevice,
 	sendWallpaperByType,
-	addToList,
 	addRole,
 	removeRole,
 	loadLoveTest,

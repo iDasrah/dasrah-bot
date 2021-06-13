@@ -26,7 +26,14 @@ module.exports.run = (client, message, args, settings) => {
 		return message.channel.send(embed);
 	} else {
 		const command = client.commands.get(commandArg);
-		if (!command) return message.reply(client.config.bot_messages['help_invalid_command']);
+		if (!command) {
+			const embed = new MessageEmbed()
+				.setTitle('ERROR: HELP_INVALID_COMMAND_ERROR')
+				.setColor('#A80506')
+				.setDescription(client.config.bot_messages['help_invalid_command'])
+				.addField('Usage', `${settings.prefix}${command.help.name} ${command.help.usage}`);
+			return message.reply(embed);
+		}
 		const embed = new MessageEmbed()
 			.setColor('#D0D4F9')
 			.setTitle(`HELP: ${command.help.name}`)

@@ -28,7 +28,6 @@ module.exports.run = (client, message, args, settings) => {
 		else embed.setFooter(`VICTOIRE DE ${client.user.username}`);
 	} else if (action === 'duel') {
 		const taggedUser = message.mentions.users.first();
-		if (!taggedUser) return message.reply(client.config.bot_messages['no_user_tagged']);
 		const number1 = number();
 		const number2 = number();
 		embed
@@ -40,10 +39,14 @@ module.exports.run = (client, message, args, settings) => {
 		if (number1 > number2) embed.setFooter(`VICTOIRE DE ${message.author.username}`);
 		else if (number1 === number2) embed.setFooter(`EGALITE`);
 		else embed.setFooter(`VICTOIRE DE ${taggedUser.username}`);
-	} else
-		return message.reply(
-			`${client.config.bot_messages['wrong_argument_error']}\r\n\`${settings.prefix}${exports.help.name} ${exports.help.usage}\``
-		);
+	} else {
+		const embed = new MessageEmbed()
+			.setTitle('ERROR: WRONG_ARGUMENT_ERROR')
+			.setColor('#A80506')
+			.setDescription(client.config.bot_messages['wrong_argument_error'])
+			.addField('Usage', `${settings.prefix}${command.help.name} ${command.help.usage}`);
+		return message.reply(embed);
+	}
 	message.channel.send(embed);
 };
 

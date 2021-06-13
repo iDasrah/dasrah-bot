@@ -3,7 +3,6 @@ const { MESSAGES } = require('../../utils/consts');
 
 module.exports.run = async (client, message, args) => {
 	const taggedUser = message.mentions.users.first();
-	if (!taggedUser) return message.reply(bot_messages['no_user_tagged']);
 	const love = random(0, 101);
 
 	await loadLoveTest(message.channel, message.author, taggedUser, love);

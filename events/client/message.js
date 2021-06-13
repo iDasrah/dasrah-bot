@@ -12,10 +12,22 @@ module.exports = async (client, message) => {
 		client.commands.get(commandName) ||
 		client.commands.find((cmd) => cmd.help.aliases && cmd.help.aliases.includes(commandName));
 
-	if (!command) return message.reply(client.config.bot_messages['invalid_command_error']);
+	if (!command) return;
+	// si membre non tag
+	else if (
+		command.help.tag &&
+		!(message.mentions.users.first() || !message.mentions.members.first())
+	) {
+		const embed = new MessageEmbed()
+			.setTitle('ERROR: NO_USER_TAGGED_ERROR')
+			.setColor('#A80506')
+			.setDescription(client.config.bot_messages['no_user_tagged'])
+			.addField('Usage', `${settings.prefix}${command.help.name} ${command.help.usage}`);
+		return message.reply(embed);
+	}
 
 	// si pas d'argument
-	if (command.help.args[0] && !args.length) {
+	else if (command.help.args[0] && !args.length) {
 		const embed = new MessageEmbed()
 			.setTitle('ERROR: NO_ARGUMENT_ERROR')
 			.setColor('#A80506')
@@ -25,7 +37,7 @@ module.exports = async (client, message) => {
 	}
 
 	// si pas la permission
-	if (!message.member.hasPermission(command.help.permission)) {
+	else if (!message.member.hasPermission(command.help.permission)) {
 		const embed = new MessageEmbed()
 			.setTitle('ERROR: NO_PERMISSION_ERROR')
 			.setColor('#A80506')
@@ -35,7 +47,7 @@ module.exports = async (client, message) => {
 	}
 
 	// si trop d'arguments
-	if (args.length > command.help.args[1]) {
+	else if (args.length > command.help.args[1]) {
 		const embed = new MessageEmbed()
 			.setTitle('ERROR: TOO_MUCH_ARGUMENTS_ERROR')
 			.setColor('#A80506')
@@ -45,7 +57,7 @@ module.exports = async (client, message) => {
 	}
 
 	// si pas assez d'arguments
-	if (args.length < command.help.args[1][0] && command.help.args[1][1] === 'strict') {
+	else if (args.length < command.help.args[1][0] && command.help.args[1][1] === 'strict') {
 		const embed = new MessageEmbed()
 			.setTitle('ERROR: NOT_ENOUGH_ARGUMENTS_ERROR')
 			.setColor('#A80506')
