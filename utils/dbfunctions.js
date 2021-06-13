@@ -43,5 +43,12 @@ module.exports = (client) => {
 		else return;
 	};
 
-	client.updateUser = async (user) => {};
+	client.updateUser = async (user, settings) => {
+		let data = await client.getUser(user);
+		if (typeof data !== 'object') data = {};
+		for (const key in settings) {
+			if (data[key] !== settings[key]) data[key] = settings[key];
+		}
+		return data.updateOne(settings);
+	};
 };
