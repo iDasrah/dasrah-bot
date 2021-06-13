@@ -1,7 +1,16 @@
 const { ROLES, CHANNELS, GUILD } = require('../../utils/consts');
 const { clearChannel, loadBar } = require('../../utils/functions');
 
-module.exports = (client, member) => {
+module.exports = async (client, member) => {
+	const newMember = {
+		guildID: member.guild.id,
+		guildName: member.guild.name,
+		userID: member.id,
+		userName: member.user.username,
+	};
+
+	await client.createUser(newMember);
+
 	const welcomeChannel = member.guild.channels.cache.get(CHANNELS.WELCOMECHANNEL);
 	const role = member.guild.roles.cache.get(ROLES.ONJOIN);
 	const guild = client.guilds.cache.get(GUILD.ID);
