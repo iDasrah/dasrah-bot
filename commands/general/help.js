@@ -28,7 +28,7 @@ module.exports.run = (client, message, args, settings) => {
 		const command = client.commands.get(commandArg);
 		if (!command) return message.reply(client.config.bot_messages['help-invalid-command']);
 		const embed = new MessageEmbed()
-			.setColor('#36394F')
+			.setColor('#D0D4F9')
 			.setTitle(`HELP: ${command.help.name}`)
 			.addField(`Description`, `${command.help.description}`)
 			.addField(`Utilisation`, `${client.config.prefix}${command.help.name} ${command.help.usage}`);
