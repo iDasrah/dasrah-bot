@@ -5,12 +5,16 @@ const userSchema = mongoose.Schema({
 	guildID: String,
 	guildName: String,
 	userID: String,
-	username: String,
+	userName: String,
 	experience: {
 		type: Number,
 		default: 0,
 	},
 	level: {
+		type: Number,
+		default: 0,
+	},
+	warns: {
 		type: Number,
 		default: 0,
 	},
