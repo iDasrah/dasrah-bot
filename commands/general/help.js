@@ -31,7 +31,7 @@ module.exports.run = (client, message, args, settings) => {
 			.setColor('#D0D4F9')
 			.setTitle(`HELP: ${command.help.name}`)
 			.addField(`Description`, `${command.help.description}`)
-			.addField(`Utilisation`, `${client.config.prefix}${command.help.name} ${command.help.usage}`);
+			.addField(`Utilisation`, `${settings.prefix}${command.help.name} ${command.help.usage}`);
 
 		if (command.help.aliases.length)
 			embed.addField('Aliases', `${command.help.aliases.join(', ')}`, true);
