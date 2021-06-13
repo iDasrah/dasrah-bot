@@ -126,18 +126,6 @@ function removeRole(taggedMember, role, message) {
 	} else return message.reply(bot_messages['role-doesnt-exist']);
 }
 
-// client.createUser = async (user) => {
-// 	const merged = Object.assign({ _id: mongoose.Types.ObjectId() }, user);
-// 	const createUser = await new User(merged);
-// 	createUser.save();
-// };
-
-// client.getUser = async (user) => {
-// 	const data = await User.findOne({ userID: user.id });
-// 	if (data) return data;
-// 	else return;
-// };
-
 async function loadLoveTest(channel, user1, user2, score) {
 	const canva = createCanvas(550, 360);
 	const ctx = canva.getContext('2d');

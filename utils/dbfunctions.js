@@ -7,7 +7,9 @@ module.exports = (client) => {
 	client.createGuild = async (guild) => {
 		const merged = Object.assign({ _id: mongoose.Types.ObjectId() }, guild);
 		const createGuild = await new Guild(merged);
-		createGuild.save().then((g) => console.log(`Nouveau serveur -> ${g.guildName}`));
+		createGuild
+			.save()
+			.then((g) => console.log(`Nouveau serveur ajouté à la database -> ${g.guildName}`));
 	};
 
 	client.getGuild = async (guild) => {
@@ -30,7 +32,9 @@ module.exports = (client) => {
 	client.createUser = async (user) => {
 		const merged = Object.assign({ _id: mongoose.Types.ObjectId() }, user);
 		const createUser = await new User(merged);
-		createUser.save();
+		createUser
+			.save()
+			.then((u) => console.log(`Nouvel utilisateur ajouté à la database -> ${u.userName}`));
 	};
 
 	client.getUser = async (user) => {

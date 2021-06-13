@@ -194,6 +194,14 @@ const MESSAGES = {
 				aliases: ['endev'],
 				permission: 'MANAGE_CHANNELS',
 			},
+			SURVEY: {
+				name: 'survey',
+				description: 'Organise un sondage',
+				args: [true, [999, '']],
+				usage: '<sondage>',
+				category: 'animation',
+				aliases: ['sv', 'srv'],
+			},
 		},
 	},
 };
@@ -225,16 +233,16 @@ const EVENTS = {
 	},
 	SKRIBBL: {
 		name: 'skribbl',
-		channel: 'skribbl'
+		channel: 'skribbl',
 	},
 	MINECRAFT: {
 		name: 'minecraft',
-		channel: 'minecraft'
+		channel: 'minecraft',
 	},
 	KCULTURE: {
 		name: 'kculture',
-		channel: 'kculture'
-	}
+		channel: 'kculture',
+	},
 };
 
 exports.MESSAGES = MESSAGES;
