@@ -54,7 +54,7 @@ module.exports = async (client, message) => {
 	}
 
 	// si pas la permission
-	else if (!message.member.hasPermission(command.help.permission)) {
+	else if (command.help.permission && !message.member.hasPermission(command.help.permission)) {
 		const embed = new MessageEmbed()
 			.setTitle('ERROR: NO_PERMISSION_ERROR')
 			.setColor('#A80506')
