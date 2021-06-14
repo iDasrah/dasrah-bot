@@ -13,7 +13,7 @@ module.exports.run = async (client, message, args, settings) => {
 						name: `${value}help pour de l'aide.`,
 					},
 				});
-				return message.channel.send(`Prefix mis à jour: \`${value}\``);
+				return message.channel.send(`Prefix mis à jour: \`${settings.prefix}\` -> \`${value}\``);
 			} else message.channel.send(`Le prefix actuel est \`${settings.prefix}\`.`);
 	}
 };
