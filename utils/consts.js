@@ -224,6 +224,14 @@ const MESSAGES = {
 				tag: true,
 				permission: 'ADMINISTRATOR',
 			},
+			REACTROLES: {
+				name: 'reactroles',
+				description: 'Envoie les messages de rôles',
+				args: [false, [0, '']],
+				usage: '',
+				category: 'admin',
+				aliases: ['rr'],
+			},
 		},
 		ANIMATION: {
 			EVENT: {
@@ -255,6 +263,48 @@ const MESSAGES = {
 				aliases: ['sv', 'srv'],
 				tag: false,
 			},
+		},
+		ANIME: {
+			QUOTE: {
+				name: 'quote',
+				description: 'Génère une citation',
+				args: [false, [0, 'strict']],
+				usage: '',
+				category: 'anime',
+				aliases: ['qt'],
+				permission: '',
+				tag: false,
+			},
+			WAIFU: {
+				name: 'waifu',
+				description: 'Génère une waifu',
+				args: [false, [0, 'strict']],
+				usage: '',
+				category: 'anime',
+				aliases: [],
+				permission: '',
+				tag: false,
+			},
+			HUG: {
+				name: 'hug',
+				description: 'Calin',
+				args: [true, [1, 'strict']],
+				usage: '<membre>',
+				category: 'anime',
+				aliases: [],
+				permission: '',
+				tag: true,
+			},
+			KILL : {
+				name: 'kill',
+				description: 'Tue un membre',
+				args: [true, [1, 'strict']],
+				usage: '<membre>',
+				category: 'anime',
+				aliases: [],
+				permission: '',
+				tag: true
+			}
 		},
 	},
 };
