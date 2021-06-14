@@ -9,7 +9,7 @@ module.exports = async (client, message) => {
 	const memberXP = memberInfo.experience;
 	let memberLevel = memberInfo.level;
 
-	let newMemberXP = memberXP + Math.floor(Math.random() * 8) + 2;
+	let newMemberXP = memberXP + Math.floor(Math.random() * 4) + 2;
 
 	if (newMemberXP >= memberLevel * 30) {
 		newMemberXP -= memberLevel * 30;
