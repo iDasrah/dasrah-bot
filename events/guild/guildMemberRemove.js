@@ -17,4 +17,5 @@ module.exports = async (client, member) => {
 	} else {
 		roadToChannel.send(attachment);
 	}
+	isReached(guild, client, roadToChannel);
 };

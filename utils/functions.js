@@ -32,7 +32,7 @@ async function loadRoadToBar(client, guild) {
 
 	ctx.fillStyle = '#32ff7e';
 	ctx.globalAlpha = 0.8;
-	ctx.fillRect(100, 225, (100 / guildInfo.roadTo) * guild.memberCount * 6, 50);
+	ctx.fillRect(100, 226, (100 / guildInfo.roadTo) * guild.memberCount * 6, 50);
 
 	ctx.globalAlpha = 1;
 	ctx.fillStyle = '#fff';
@@ -164,7 +164,7 @@ function removeRole(taggedMember, role, message) {
 async function loadLoveTest(user1, user2, score) {
 	const canva = createCanvas(550, 360);
 	const ctx = canva.getContext('2d');
-	const bg = await loadImage('./assets/img/love_background.jpg');
+	const bg = await loadImage('');
 	const user1Avatar = await loadImage(user1.displayAvatarURL({ format: 'jpg', size: 128 }));
 	const user2Avatar = await loadImage(user2.displayAvatarURL({ format: 'jpg', size: 128 }));
 
@@ -189,6 +189,40 @@ async function loadLoveTest(user1, user2, score) {
 }
 
 // TODO: LOAD XP BAR
+async function loadXPBar(member, experience, level) {
+	const canva = createCanvas(588, 188);
+	const ctx = canva.getContext('2d');
+	const bg = await loadImage('./assets/bgs/level.png');
+	const userAvatar = await loadImage(member.displayAvatarURL({ size: 128, format: 'jpg' }));
+
+	ctx.drawImage(bg, 0, 0, canva.width, canva.height);
+	ctx.drawImage(userAvatar, 30, 30);
+
+	ctx.beginPath();
+	ctx.lineWidth = 2;
+	ctx.fillStyle = '#d0d4f9';
+	ctx.strokeStyle = '#faa2ae';
+	ctx.globalAlpha = 0.6;
+	ctx.fillRect(188, 84, 370, 20);
+	ctx.globalAlpha = 1;
+	ctx.strokeRect(188, 84, 370, 20);
+
+	ctx.fillStyle = '#c0eade';
+	ctx.globalAlpha = 0.8;
+	ctx.fillRect(189, 84, (100 / (level * 30)) * experience * 3.7, 20);
+
+	ctx.font = '16px Arial';
+	ctx.fillStyle = '#fff';
+	ctx.globalAlpha = 1;
+	ctx.textAlign = 'start';
+	ctx.fillText(`XP: ${experience} / ${level * 30}`, 188, 78);
+	ctx.textAlign = 'end';
+	ctx.fillText(`LEVEL ${level}`, 558, 120);
+
+	const attachment = new MessageAttachment(canva.toBuffer(), 'level.png');
+
+	return attachment;
+}
 
 async function isReached(guild, client, channel) {
 	const guildInfo = client.getGuild(guild);
@@ -198,6 +232,7 @@ async function isReached(guild, client, channel) {
 		client.updateGuild(guild, { roadTo: guildRoadTo * 2 });
 		channel.send(`L'OBJECTIF A ETE ATTEINT !!!! :partying_face:`);
 		const attachment = loadRoadToBar(client, guild);
+		channel.send(attachment);
 		return true;
 	} else return false;
 }
@@ -214,4 +249,5 @@ module.exports = {
 	removeRole,
 	loadLoveTest,
 	isReached,
+	loadXPBar,
 };
