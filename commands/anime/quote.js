@@ -2,14 +2,11 @@ const { MESSAGES } = require('../../utils/consts');
 const fetch = require('node-fetch');
 const translate = require('@iamtraction/google-translate');
 
-module.exports.run = (client, message, args) => {
-	fetch('https://animechan.vercel.app/api/random')
-		.then((response) => response.json())
-		.then((quote) => {
-			translate(quote.quote, { to: 'fr' }).then((res) => {
-				message.channel.send(`${res.text}\r\n~${quote.character}, ${quote.anime}`);
-			});
-		});
+module.exports.run = async (client, message, args) => {
+	const res = await fetch('https://animechan.vercel.app/api/random');
+	const data = await res.json();
+	const quote = await translate(data.quote, { to: 'fr' });
+	message.channel.send(`${quote.text}\r\n~${data.character}, ${data.anime}`);
 };
 
 module.exports.help = MESSAGES.COMMANDS.ANIME.QUOTE;

@@ -238,39 +238,29 @@ async function isReached(guild, client, channel) {
 	} else return false;
 }
 
-function getPageCount(category = '') {
+async function getPageCount(category = '') {
 	if (!category) {
-		const page = fetch('https://kitsu.io/api/edge/anime').then((res) =>
-			res.json().then((answer) => {
-				return answer.meta.count;
-			})
-		);
-
-		return page;
+		const res = await fetch('https://kitsu.io/api/edge/anime');
+		const data = await res.json();
+		return data.meta.count;
 	}
 
-	const page = fetch(`https://kitsu.io/api/edge/anime?filter[categories]=${category}`).then((res) =>
-		res.json().then((answer) => {
-			return answer.meta.count;
-		})
-	);
-
-	return page;
+	const res = await fetch(`https://kitsu.io/api/edge/anime?filter[categories]=${category}`);
+	const data = await res.json();
+	return data.meta.count;
 }
 
-function getCategory(id) {
-	const result = fetch(`https://kitsu.io/api/edge/anime/${id}/categories`).then((res) =>
-		res.json().then((category) => {
-			const categoryData = category.data;
-			let categories = [];
+async function getCategory(id) {
+	const res = await fetch(`https://kitsu.io/api/edge/anime/${id}/categories`);
+	const cat = await res.json();
+	const data = cat.data;
+	let categories = [];
 
-			for (const categorie of categoryData) {
-				categories.push(categorie.attributes.title);
-			}
-			return categories;
-		})
-	);
-	return result;
+	for (const category of data) {
+		categories.push(category.attributes.title);
+	}
+
+	return categories;
 }
 
 module.exports = {
