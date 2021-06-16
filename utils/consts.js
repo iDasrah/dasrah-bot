@@ -139,6 +139,14 @@ const MESSAGES = {
 				tag: false,
 				permission: '',
 			},
+			APOD: {
+				name: 'apod',
+				description: "Génère la photo d'astronomie du jour",
+				args: [false, [0, 'strict']],
+				usage: '',
+				category: 'misc',
+				aliases: [],
+			},
 		},
 		MODERATION: {
 			BAN: {
