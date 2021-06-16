@@ -129,6 +129,16 @@ const MESSAGES = {
 				tag: false,
 				permission: '',
 			},
+			YAELLE: {
+				name: 'yaelle',
+				description: '',
+				args: [false, [0, 'strict']],
+				usage: '',
+				category: '',
+				aliases: [],
+				tag: false,
+				permission: '',
+			},
 		},
 		MODERATION: {
 			BAN: {
@@ -295,7 +305,7 @@ const MESSAGES = {
 				permission: '',
 				tag: true,
 			},
-			KILL : {
+			KILL: {
 				name: 'kill',
 				description: 'Tue un membre',
 				args: [true, [1, 'strict']],
@@ -303,8 +313,8 @@ const MESSAGES = {
 				category: 'anime',
 				aliases: [],
 				permission: '',
-				tag: true
-			}
+				tag: true,
+			},
 		},
 	},
 };
