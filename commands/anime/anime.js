@@ -2,6 +2,7 @@ const { MESSAGES } = require('../../utils/consts');
 const fetch = require('node-fetch');
 const { random, getPageCount, getCategory } = require('../../utils/functions');
 const { MessageEmbed } = require('discord.js');
+const translate = require('@iamtraction/google-translate');
 
 module.exports.run = async (client, message, args) => {
 	const embed = new MessageEmbed();
@@ -15,29 +16,31 @@ module.exports.run = async (client, message, args) => {
 				const attributes = data.attributes;
 				const genres = await getCategory(data.id);
 
-				embed
-					.setTitle(attributes.canonicalTitle)
-					.setDescription(attributes.synopsis)
-					.setImage(attributes.posterImage.original)
-					.addFields(
-						{ name: 'Commencé le', value: attributes.startDate, inline: true },
-						{
-							name: 'Terminé le',
-							value: attributes.endDate,
-							inline: true,
-						},
-						{
-							name: "Nombre d'épisodes",
-							value: attributes.episodeCount,
-							inline: true,
-						},
-						{
-							name: 'Genres',
-							value: genres.join(', ') || 'Inconnu',
-							inline: true,
-						}
-					);
-				message.channel.send(embed);
+				translate(attributes.synopsis, { to: 'fr' }).then((synopsis) => {
+					embed
+						.setTitle(attributes.canonicalTitle)
+						.setDescription(synopsis.text)
+						.setImage(attributes.posterImage.original)
+						.addFields(
+							{ name: 'Commencé le', value: attributes.startDate, inline: true },
+							{
+								name: 'Terminé le',
+								value: attributes.endDate,
+								inline: true,
+							},
+							{
+								name: "Nombre d'épisodes",
+								value: attributes.episodeCount,
+								inline: true,
+							},
+							{
+								name: 'Genres',
+								value: genres.join(', ') || 'Inconnu',
+								inline: true,
+							}
+						);
+					message.channel.send(embed);
+				});
 			})
 		);
 	} else {
@@ -54,29 +57,31 @@ module.exports.run = async (client, message, args) => {
 				const dataAttributes = animeData.attributes;
 				const genres = await getCategory(animeData.id);
 
-				embed
-					.setTitle(dataAttributes.canonicalTitle)
-					.setDescription(dataAttributes.synopsis)
-					.setImage(dataAttributes.posterImage.original)
-					.addFields(
-						{ name: 'Commencé le', value: dataAttributes.startDate, inline: true },
-						{
-							name: 'Terminé le',
-							value: dataAttributes.endDate,
-							inline: true,
-						},
-						{
-							name: "Nombre d'épisodes",
-							value: dataAttributes.episodeCount,
-							inline: true,
-						},
-						{
-							name: 'Genres',
-							value: genres.join(', ') || 'Inconnu',
-							inline: true,
-						}
-					);
-				message.channel.send(embed);
+				translate(dataAttributes.synopsis, { to: 'fr' }).then((synopsis) => {
+					embed
+						.setTitle(dataAttributes.canonicalTitle)
+						.setDescription(synopsis.text)
+						.setImage(dataAttributes.posterImage.original)
+						.addFields(
+							{ name: 'Commencé le', value: dataAttributes.startDate, inline: true },
+							{
+								name: 'Terminé le',
+								value: dataAttributes.endDate,
+								inline: true,
+							},
+							{
+								name: "Nombre d'épisodes",
+								value: dataAttributes.episodeCount,
+								inline: true,
+							},
+							{
+								name: 'Genres',
+								value: genres.join(', ') || 'Inconnu',
+								inline: true,
+							}
+						);
+					message.channel.send(embed);
+				});
 			})
 		);
 	}
