@@ -1,5 +1,4 @@
 const { mobile, desktop } = require('../../json/wallpapers.json');
-const { isURL } = require('validator');
 const {
 	getFromType,
 	sendWallpaper,

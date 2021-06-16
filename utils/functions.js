@@ -1,7 +1,7 @@
 const { createCanvas, loadImage } = require('canvas');
 const { MessageAttachment, MessageEmbed } = require('discord.js');
-const { GUILD } = require('./consts');
 const fetch = require('node-fetch');
+const { mobile, desktop } = require('../json/wallpapers.json');
 
 function random(min, max) {
 	min = Math.ceil(min);
@@ -75,7 +75,7 @@ function sendWallpaper(message) {
 function sendWallpaperByDevice(message, device) {
 	const embed = new MessageEmbed()
 		.setColor('#F7B2EE')
-		.setDescription(descriptions[random(0, descriptions.length)])
+		.setDescription("Et voilà un beau fond d'écran !")
 		.setTimestamp();
 	image = device[random(0, device.length)].url;
 
@@ -97,7 +97,7 @@ function sendWallpaperByDevice(message, device) {
 function sendWallpaperByType(message, device, urls) {
 	const embed = new MessageEmbed()
 		.setColor('#F7B2EE')
-		.setDescription(descriptions[random(0, descriptions.length)])
+		.setDescription("Et voilà un beau fond d'écran !")
 		.setTimestamp();
 	image = urls[random(0, urls.length)];
 
