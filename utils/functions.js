@@ -1,6 +1,7 @@
 const { createCanvas, loadImage } = require('canvas');
 const { MessageAttachment, MessageEmbed } = require('discord.js');
 const { GUILD } = require('./consts');
+const fetch = require('node-fetch');
 
 function random(min, max) {
 	min = Math.ceil(min);
@@ -237,6 +238,41 @@ async function isReached(guild, client, channel) {
 	} else return false;
 }
 
+function getPageCount(category = '') {
+	if (!category) {
+		const page = fetch('https://kitsu.io/api/edge/anime').then((res) =>
+			res.json().then((answer) => {
+				return answer.meta.count;
+			})
+		);
+
+		return page;
+	}
+
+	const page = fetch(`https://kitsu.io/api/edge/anime?filter[categories]=${category}`).then((res) =>
+		res.json().then((answer) => {
+			return answer.meta.count;
+		})
+	);
+
+	return page;
+}
+
+function getCategory(id) {
+	const result = fetch(`https://kitsu.io/api/edge/anime/${id}/categories`).then((res) =>
+		res.json().then((category) => {
+			const categoryData = category.data;
+			let categories = [];
+
+			for (const categorie of categoryData) {
+				categories.push(categorie.attributes.title);
+			}
+			return categories;
+		})
+	);
+	return result;
+}
+
 module.exports = {
 	random,
 	loadRoadToBar,
@@ -250,4 +286,6 @@ module.exports = {
 	loadLoveTest,
 	isReached,
 	loadXPBar,
+	getPageCount,
+	getCategory,
 };

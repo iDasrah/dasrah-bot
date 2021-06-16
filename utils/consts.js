@@ -315,6 +315,16 @@ const MESSAGES = {
 				permission: '',
 				tag: true,
 			},
+			ANIME: {
+				name: 'anime',
+				description: 'Génère un anime',
+				args: [false, [1]],
+				usage: '<type>',
+				category: 'anime',
+				aliases: [],
+				tag: false,
+				permission: '',
+			},
 		},
 	},
 };
