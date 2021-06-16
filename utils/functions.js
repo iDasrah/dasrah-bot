@@ -201,7 +201,7 @@ async function loadXPBar(member, experience, level) {
 	ctx.beginPath();
 	ctx.lineWidth = 2;
 	ctx.fillStyle = '#d0d4f9';
-	ctx.strokeStyle = '#faa2ae';
+	ctx.strokeStyle = '#CAF7E3';
 	ctx.globalAlpha = 0.6;
 	ctx.fillRect(188, 84, 370, 20);
 	ctx.globalAlpha = 1;

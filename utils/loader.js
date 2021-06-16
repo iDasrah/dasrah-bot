@@ -8,7 +8,6 @@ const loadCommands = (client, dir = './commands/') => {
 		for (const file of commandFiles) {
 			const getFileName = require(`../${dir}/${dirs}/${file}`);
 			client.commands.set(getFileName.help.name, getFileName);
-			console.log(`Commande chargée: ${getFileName.help.name}`);
 		}
 	});
 };
