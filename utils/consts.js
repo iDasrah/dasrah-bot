@@ -31,6 +31,16 @@ const MESSAGES = {
 				tag: false,
 				permission: '',
 			},
+			IAMBORED: {
+				name: 'iambored',
+				description: 'Trouve une occupation',
+				args: [false, [0, 'stricts']],
+				usage: '',
+				category: 'fun',
+				aliases: ['bored'],
+				tag: false,
+				permission: '',
+			},
 		},
 		GAMES: {
 			BALL: {
