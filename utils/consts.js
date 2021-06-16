@@ -146,6 +146,18 @@ const MESSAGES = {
 				usage: '',
 				category: 'misc',
 				aliases: [],
+				tag: false,
+				permission: '',
+			},
+			NBRFACT: {
+				name: 'nbrfact',
+				description: 'Anecdote sur un nombre',
+				args: [false, [0, '']],
+				usage: '',
+				category: 'misc',
+				aliases: [],
+				tag: false,
+				permission: '',
 			},
 		},
 		MODERATION: {
@@ -249,6 +261,8 @@ const MESSAGES = {
 				usage: '',
 				category: 'admin',
 				aliases: ['rr'],
+				tag: false,
+				permission: 'ADMINISTRATOR',
 			},
 		},
 		ANIMATION: {
@@ -280,6 +294,7 @@ const MESSAGES = {
 				category: 'animation',
 				aliases: ['sv', 'srv'],
 				tag: false,
+				permission: 'MANAGE_CHANNELS',
 			},
 		},
 		ANIME: {
