@@ -163,26 +163,22 @@ function removeRole(taggedMember, role, message) {
 }
 
 async function loadLoveTest(user1, user2, score) {
-	const canva = createCanvas(550, 360);
+	const canva = createCanvas(406, 188);
 	const ctx = canva.getContext('2d');
-	const bg = await loadImage('');
+	const bg = await loadImage('./assets/bgs/lovetest.png');
 	const user1Avatar = await loadImage(user1.displayAvatarURL({ format: 'jpg', size: 128 }));
 	const user2Avatar = await loadImage(user2.displayAvatarURL({ format: 'jpg', size: 128 }));
 
 	ctx.drawImage(bg, 0, 0, canva.width, canva.height);
-	ctx.drawImage(user1Avatar, 100, 100);
-	ctx.drawImage(user2Avatar, 322, 100);
+	ctx.drawImage(user1Avatar, 30, 30);
+	ctx.drawImage(user2Avatar, 248, 30);
 
 	ctx.fillStyle = '#e66767';
 	ctx.globalAlpha = 1;
-	ctx.font = '50px Arial';
+	ctx.font = '30px Arial';
 	ctx.textAlign = 'center';
 
-	ctx.fillText(`${score}%`, 275, 300);
-
-	ctx.fillStyle = '#e66767';
-	ctx.font = '60px Arial';
-	ctx.fillText('LOVE TEST', 275, 70);
+	ctx.fillText(`${score}%`, 203, 158);
 
 	const attachment = new MessageAttachment(canva.toBuffer(), 'lovetest.png');
 
