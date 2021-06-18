@@ -4,11 +4,12 @@ const { random } = require('../../utils/functions');
 const { MESSAGES } = require('../../utils/consts');
 
 module.exports.run = (client, message, args) => {
+	const meme = shrek[random(0, shrek.length)].url;
 	const embed = new MessageEmbed()
 		.setColor('#70CAB0')
 		.setTitle('SHREK MEME GENERATOR')
 		.setTimestamp()
-		.setImage(shrek[random(0, shrek.length)].url);
+		.setImage(meme);
 	message.channel.send(embed);
 };
 

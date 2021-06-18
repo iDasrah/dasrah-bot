@@ -1,4 +1,4 @@
-const { loadRoadToBar, clearChannel } = require('../../utils/functions');
+const { loadRoadToBar, isReached } = require('../../utils/functions');
 const { GUILD, CHANNELS } = require('../../utils/consts');
 
 module.exports = async (client, member) => {

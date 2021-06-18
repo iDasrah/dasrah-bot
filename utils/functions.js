@@ -185,7 +185,6 @@ async function loadLoveTest(user1, user2, score) {
 	return attachment;
 }
 
-// TODO: LOAD XP BAR
 async function loadXPBar(member, experience, level) {
 	const canva = createCanvas(588, 188);
 	const ctx = canva.getContext('2d');

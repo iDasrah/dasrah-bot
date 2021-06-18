@@ -4,11 +4,12 @@ const { random } = require('../../utils/functions');
 const { MESSAGES } = require('../../utils/consts');
 
 module.exports.run = (client, message, args) => {
+	const meme = math[random(0, math.length)].url;
 	const embed = new MessageEmbed()
 		.setColor('#FAF3E1')
 		.setTitle('MATH MEME GENERATOR')
 		.setTimestamp()
-		.setImage(math[random(0, math.length)].url);
+		.setImage();
 	message.channel.send(embed);
 };
 

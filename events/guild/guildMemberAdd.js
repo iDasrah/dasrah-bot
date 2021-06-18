@@ -1,5 +1,5 @@
 const { ROLES, CHANNELS, GUILD } = require('../../utils/consts');
-const { clearChannel, loadRoadToBar } = require('../../utils/functions');
+const { clearChannel, loadRoadToBar, isReached } = require('../../utils/functions');
 
 module.exports = async (client, member) => {
 	const newMember = {
