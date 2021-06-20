@@ -95,6 +95,16 @@ const MESSAGES = {
 				permission: '',
 				tag: false,
 			},
+			TOP: {
+				name: 'top',
+				description: 'Classement des niveaux',
+				args: [false, [0, 'strict']],
+				usage: '',
+				category: 'general',
+				aliases: [],
+				tag: false,
+				permission: '',
+			},
 		},
 		MEMES: {
 			MATH: {
