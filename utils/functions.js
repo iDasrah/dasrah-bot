@@ -258,6 +258,19 @@ async function getCategory(id) {
 	return categories;
 }
 
+async function getMembersInDb(client, guild) {
+	const memberCache = guild.members.cache;
+	const members = [];
+
+	for (member of memberCache) {
+		member = member[1];
+		if (member.user.bot) continue;
+		members.push(await client.getUser(member));
+	}
+
+	return members;
+}
+
 module.exports = {
 	random,
 	loadRoadToBar,
@@ -273,4 +286,5 @@ module.exports = {
 	loadXPBar,
 	getPageCount,
 	getCategory,
+	getMembersInDb,
 };
