@@ -220,19 +220,6 @@ async function loadXPBar(member, experience, level) {
 	return attachment;
 }
 
-async function isReached(guild, client, channel) {
-	const guildInfo = client.getGuild(guild);
-	const guildRoadTo = guildInfo.roadTo;
-
-	if (guild.memberCount >= guildRoadTo) {
-		client.updateGuild(guild, { roadTo: guildRoadTo * 2 });
-		channel.send(`L'OBJECTIF A ETE ATTEINT !!!! :partying_face:`);
-		const attachment = loadRoadToBar(client, guild);
-		channel.send(attachment);
-		return true;
-	} else return false;
-}
-
 async function getPageCount(category = '') {
 	if (!category) {
 		const res = await fetch('https://kitsu.io/api/edge/anime');
@@ -282,7 +269,6 @@ module.exports = {
 	addRole,
 	removeRole,
 	loadLoveTest,
-	isReached,
 	loadXPBar,
 	getPageCount,
 	getCategory,

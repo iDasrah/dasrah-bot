@@ -1,4 +1,4 @@
-const { loadRoadToBar, isReached } = require('../../utils/functions');
+const { loadRoadToBar } = require('../../utils/functions');
 const { GUILD, CHANNELS } = require('../../utils/consts');
 
 module.exports = async (client) => {
@@ -34,7 +34,6 @@ module.exports = async (client) => {
 	} else {
 		roadToChannel.send(attachment);
 	}
-	isReached(guild, client, roadToChannel);
 
 	// confirmations
 	console.log(`${client.config.bot_info.name}: Je suis prête !`);
