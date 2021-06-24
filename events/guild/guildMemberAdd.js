@@ -24,7 +24,7 @@ module.exports = async (client, member) => {
 
 	// road to bar
 	const attachment = await loadRoadToBar(client, guild);
-	if (await roadToChannel.lastMessage.attachments) {
+	if (roadToChannel.lastMessage) {
 		roadToChannel.lastMessage.edit(attachment);
 	} else {
 		roadToChannel.send(attachment);
