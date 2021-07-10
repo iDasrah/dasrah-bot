@@ -4,11 +4,11 @@ const { MESSAGES, CHANNELS } = require('../../utils/consts');
 module.exports.run = (client, message, args) => {
 	message.delete();
 	const reason = args.splice(1).join(' ') || 'Raison non spécifiée.';
-	const taggedUser = message.mentions.members.first();
+	const taggedMember = message.mentions.members.first();
 	embed = new MessageEmbed()
 		.setTitle('MEMBRE EXPULSÉ')
 		.setDescription('Un camarade a été expulsé...')
-		.addField('Membre', taggedUser, true)
+		.addField('Membre', taggedMember, true)
 		.addField('Raison', reason)
 		.setTimestamp();
 
